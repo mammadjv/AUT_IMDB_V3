@@ -8,21 +8,53 @@
 <head>
     <title>AUT Movie</title>
     <link rel="stylesheet" href="../assets/main.css"/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="fa" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="../assets/bootstrap.min.css">-->
+    <!--<script src="../js/jquery.min.js"></script>-->
+    <!--<script src="../js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="../assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/owl.theme.css"/>
+    <link rel="stylesheet" href="../assets/owl.transitions.css"/>
+
+    <link rel="stylesheet" href="../assets/bootstrap.min.css"/>
+
 </head>
 <body>
+
+<!--<script>-->
+    <!--$(document).ready(function() {-->
+
+        <!--$("#owl-demo").owlCarousel({-->
+            <!--loop: true,-->
+            <!--autoPlay: 3000, //Set AutoPlay to 3 seconds-->
+            <!--items : 5,-->
+            <!--itemsDesktop : [1199,3],-->
+            <!--itemsDesktopSmall : [979,3]-->
+
+        <!--});-->
+
+    <!--});-->
+<!--</script>-->
+
 <div id="main_div">
-    <div id="div_1">
-        <input id = "search_icon"  type="image" src="../img/search.png">
-        <input id="search_input" type="text" , name="search" placeholder="جستجوی فیلم، سریال، بازیگر، کارگردان">
-        <img id = "blue_icon" src = "../img/blue.jpg">
-        <a href="login.html"><input id = "login_button"  type="image" src="../img/login-signup.png"> </a>
-        <!--<button class="login">-->
-            <!--ورود/عضویت-->
-        <!--</button>-->
+    <div class="row" id = "div_1" >
+        <div class = "col-lg-6">
+            <img class = "col-lg-1" id="search_icon" src = "../img/search.png">
+            <input class="col-lg-5" id="search_input" type="text" , name="search" placeholder="جستجوی فیلم، سریال، بازیگر، کارگردان">
+        </div>
+        <div class = "col-lg-6">
+            <img class = "col-lg-1" id = "blue_icon" src = "../img/blue.jpg">
+            <a href="login.html"><input class = "col-lg-1" id = "login_button"  type="image" src="../img/login-signup.png"> </a>
+        </div>
     </div>
-    <div id="navigation_bar">
+
+    <div class="navigation_bar">
         <ul>
             <li>
                 <a >آخرین</a>
@@ -67,22 +99,46 @@
             </li>
         </ul>
     </div>
-    <div id="div_3">
-        <input id = "imdb_image"  type="image" src="../img/imdb_.jpg">
-        <input id = "scroll_down"  type="image" src="../img/scroll-down.gif">
+    <div class="row">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image1"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image2"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image3"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image1"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image2"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image3"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image1"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image2"></div>
+            <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image3"></div>
+        </div>
+    </div>
 
-        <img id = "twitter" src="../img/twitter.png">
-        <img id = "insta" src="../img/insta.png">
-        <img id = "tele" src="../img/tele.png">
-        <img id = "google" src="../img/g+.png">
 
-        <comment id="description1">مجموعه دیتابیس فیلم امیرکبیر، با هدف ایجاد یک تجربه مشترک آموزشی و تفریحی برای دانشجویان دانشگاه صنعتی امیرکبیر بدون چشم داشت تجاری. در صورتی که از این سایت و امکانات آن لذت میبرید آن را به دوستان خود معرفی کنید</comment >
-        <comment id="description2">.تمامی حقوق این وب سایت متعلق به دیتابیس فیلم امیرکبیر می‌باشد</comment>
-        <!--<input id = "twitter"  type="image" src="../img/twitter.ico">-->
-        <!--<input id = "insta"  type="image" src="../img/insta.svg">-->
-
+    <div class="div_3">
+        <div class = "row">
+            <!--<div class="col-lg-12">-->
+            <p id="description1" class="col-lg-6">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbspمجموعه دیتابیس فیلم امیرکبیر، با هدف ایجاد یک تجربه مشترک آموزشی و تفریحی برای دانشجویان دانشگاه صنعتی امیرکبیر بدون چشم داشت تجاری. در صورتی که از این سایت و امکانات آن لذت میبرید آن را به دوستان خود معرفی کنید
+            </p>
+            <div class="col-lg-1">&nbsp&nbsp&nbsp</div>
+            <img class="col-lg-1"  src="../img/twitter.png">
+            <img class="col-lg-1" src="../img/insta.png">
+            <img class="col-lg-1" src="../img/tele.png">
+            <img class="col-lg-1" src="../img/g+.png">
+            <div class="col-lg-1">&nbsp&nbsp&nbsp</div>
+        </div>
+        <div id ="description2" class="col-lg-5">تمامی حقوق این وب سایت متعلق به دیتابیس فیلم امیرکبیر می‌باشد.
+        </div>
+        <br>
+        <br>
 
     </div>
-    </div>
+
+</div>
+
+<script src="../js/jquery_library2.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
