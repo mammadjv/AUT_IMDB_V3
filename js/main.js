@@ -17,7 +17,7 @@ $(document).ready(function() {
         autoPlay: 3000,
 
         // "singleItem:true" is a shortcut for:
-        items : 3,
+        items : 6,
         // itemsDesktop : false,
         // itemsDesktopSmall : false,
         // itemsTablet: false,
