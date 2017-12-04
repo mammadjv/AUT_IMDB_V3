@@ -21,39 +21,32 @@
     <link rel="stylesheet" href="../assets/owl.carousel.css">
     <link rel="stylesheet" href="../assets/owl.theme.css"/>
     <link rel="stylesheet" href="../assets/owl.transitions.css"/>
-
     <link rel="stylesheet" href="../assets/bootstrap.min.css"/>
 
 </head>
 <body>
 
-<!--<script>-->
-    <!--$(document).ready(function() {-->
-
-        <!--$("#owl-demo").owlCarousel({-->
-            <!--loop: true,-->
-            <!--autoPlay: 3000, //Set AutoPlay to 3 seconds-->
-            <!--items : 5,-->
-            <!--itemsDesktop : [1199,3],-->
-            <!--itemsDesktopSmall : [979,3]-->
-
-        <!--});-->
-
-    <!--});-->
-<!--</script>-->
-
 <div id="main_div">
     <div class="row" id = "div_1" >
-        <div class = "col-lg-6">
-            <img class = "col-lg-1" id="search_icon" src = "../img/search.png">
-            <input class="col-lg-5" id="search_input" type="text" , name="search" placeholder="جستجوی فیلم، سریال، بازیگر، کارگردان">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                <input id="search_icon" type="image" src="../img/search.png">
+                </span>
+                <input id="search_input" type="text" class="form-control" placeholder="Search for...">
+            </div>
         </div>
         <div class = "col-lg-6">
-            <img class = "col-lg-1" id = "blue_icon" src = "../img/blue.jpg">
-            <a href="login.html"><input class = "col-lg-1" id = "login_button"  type="image" src="../img/login-signup.png"> </a>
+            <div class="btn-group" role="group" aria-label="Basic example" style="float:right;">
+                <img class = "col-lg-1" id = "blue_icon" src = "../img/blue.jpg">
+                <a href="login.html">
+                    <button type="button" id="login_button" class="btn btn-secondary">
+                    ورود/عضویت
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
-
     <div class="navigation_bar">
         <ul>
             <li>
@@ -99,7 +92,7 @@
             </li>
         </ul>
     </div>
-    <div class="row">
+    <div class="row" id="imdb_image">
         <div id="owl-demo" class="owl-carousel owl-theme">
             <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image1"></div>
             <div class="item"><img src="../img/mohammad_javadi.jpg" alt="Owl Image2"></div>

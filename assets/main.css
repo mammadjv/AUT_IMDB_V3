@@ -1,12 +1,14 @@
 #owl-demo {
     display: block;
     position: relative;
-    top:10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    /*top:20%;*/
     left:10%;
     width: 80%;
-    height: 70%;
-    background-color: yellow;
-
+    height: 80%;
+    border-radius: 20px;
+    background-color: black;
 }
 
 .item img{
@@ -16,7 +18,7 @@
     top:0%;
     left: 0%;
     width: 50%;
-    height: 100%;
+    height: 300px;
 }
 
 .slider-caption {
@@ -195,11 +197,10 @@ div::-webkit-scrollbar{
 }
 
 #div_1{
-    /*background-color: red;*/
     position: relative;
     left: 10%;
     width: 80%;
-    height: 10%;
+    /*height: 10%;*/
 }
 
 #search{
@@ -210,15 +211,11 @@ div::-webkit-scrollbar{
 
 #search_icon{
     filter: brightness(95%);
-    position: absolute;
-    /*padding-left: 20px;*/
-    /*margin-left: 10rem;*/
-    left: 5rem;
-    width: 10rem;
-    top: 1rem;
-    height: 5rem;
-    border-top-left-radius: 40rem;
-    border-bottom-left-radius: 40rem;
+    margin-top:10px;
+    width: 80px;
+    height: 50px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
     border: none;
     background-position: center;
     background-size: cover;
@@ -266,6 +263,13 @@ div::-webkit-scrollbar{
     margin-left: 0px;
 }
 
+
+/*#imdb_image{*/
+    /*background:transparent url('../img/imdb_.jpg') no-repeat center center /cover*/
+
+
+/*}*/
+
 /*.row{*/
     /*margin-left: 10px;*/
     /*margin-right: 10px;*/
@@ -294,12 +298,20 @@ div::-webkit-scrollbar{
 }
 
 #imdb_image{
-    position: relative; top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    filter: blur(4px);
-    /*background-color: yellow;*/
+    /*position: relative; top: 0%;*/
+    /*left: 0%;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+
+    /*background-color
+    : yellow;*/
+    background:transparent url('../img/imdb_.jpg') no-repeat center center /cover;
+
+    /*filter:blur(1px);*/
+}
+
+#imdb_image * *{
+    !important;
 }
 
 #scroll_down{
@@ -376,14 +388,9 @@ div::-webkit-scrollbar{
 #search_input{
     border: none;
     background-color: whitesmoke;
-    position: absolute;
-    /*left: ;*/
-    /*width: 40%;*/
-    /*top: 20%;*/
-    /*height: 60%;*/
-    top: 1rem;
-    height: 5rem;
-    left: 13rem;
+    margin-top:10px;
+    height: 50px;
+    border: none;
     text-align: right;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -397,11 +404,9 @@ div::-webkit-scrollbar{
 
 
 #blue_icon{
-    position: absolute;
-    left: 70rem;
-    width: 10rem;
-    top: 1rem;
-    height: 5rem;
+    margin-top:10px;
+    width:80px;
+    height: 50px
     border-radius: 10px;
 }
 
@@ -420,14 +425,13 @@ div::-webkit-scrollbar{
 
 
 #login_button{
-    border: none;
-    position: absolute;
-    left: 80%;
-    width: 20rem;
-    top: 1rem;
-    height: 5rem;
+    border: solid;
+    border-color: blue;
+    color:blue;
+    margin-top:11px;
+    width:180px;
+    height: 48px;
     border-radius: 10px;
-    background-color: white;
 }
 #login_button:active{
     filter: brightness(90%);
