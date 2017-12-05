@@ -1,0 +1,122 @@
+body div{
+    position: fixed; left: 0% ; right: 0%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    resize: both;
+    height: 100%;
+    background-color: black;
+}
+
+div::-webkit-scrollbar{
+    display: none;
+}
+
+.movie_info div{
+    /*padding-right: 5%;*/
+    margin-right: 0%;
+    position: relative;
+    left: 0%;
+    /*background: none;*/
+    direction: rtl;
+    font-size: large;
+    margin-top: 10px;
+    color: whitesmoke;
+    height: auto;
+}
+
+
+#left_pannel{
+    position:relative;
+    margin-right:35%;
+    margin-top:0%;
+    height: 99%;
+    color: whitesmoke;
+    background: none;
+}
+
+#left_pannel div,hr{
+    margin-left: 20%;
+    overflow-x: hidden;
+}
+
+#film_icon{
+    position:absolute;
+    top: 0%;
+    right: 5%;
+    width: 27%;
+    height: 80%;
+    background-color: red;
+}
+
+
+#left_pannel *{
+    background: none;
+    /*top: 20;*/
+    /*margin-top: 4px;*/
+}
+
+#time_country button{
+    border: none;
+    margin-right: 30px;
+}
+
+
+.movie_info{
+    position: relative;
+    left: 10%;
+    width: 80%;
+    top: 10%;
+    height: 80%;
+    background-color: darkorange;
+}
+
+.movie_info img{
+    /*position: relative;*/
+    float: right;
+    margin-right: 100px;
+    margin-top: 30px;
+    /*margin-bottom: 100px;*/
+    width: 250px;
+    height: 60%;
+    /*height: auto;*/
+}
+
+#movies_buttons button{
+    /*float: right;*/
+    margin-right: 10px;
+    font-size: 13px;
+    background-color: lightgrey;
+    border:solid;
+    color: darkslateblue;
+    width: 80px;
+    height: 40px;
+    border-radius: 6px;
+    margin-top: 3px;
+}
+
+
+#movies_buttons{
+    width: 100%;
+}
+
+.film_info{
+    position: relative;
+    direction: ltr;
+    left: 10%;
+    top: 0%;
+    width: 70%;
+    height: 300px;
+    text-align: left;
+    background-color: blue;
+    border: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat:   no-repeat;
+}
+
+#background{
+    position: absolute;
+    width: 100%;
+    height: 95%;
+    top: 4%;
+}
