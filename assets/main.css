@@ -188,7 +188,9 @@ li select{
 
 
 li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: darkred;
+    color: white;
+    text-decoration: none;
 }
 
 
