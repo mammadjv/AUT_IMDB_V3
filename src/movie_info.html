@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/movie_info.css"/>
     <link rel="stylesheet" href="../assets/bootstrap.min.css"/>
+    <link href="../assets/emoji.css" rel="stylesheet">
     <title>
 
     </title>
@@ -11,29 +12,19 @@
 <body>
     <div>
         <div class="movie_info">
-            <div style="height: 20px; background: none;margin-right: 10%">
+            <div id ="film_name" style="height: 20px; background: none;margin-right: 3%">
                 دانلود انیمیشن
             </div>
-            <div class="row btn-group" id="movies_buttons" style="background: none">
-                <button>
-                    همه
-                </button >
-                <button >
-                    فیلم سینمایی
-                </button>
-                <button >
-خر
-                </button>
+            <div class="row btn-group" id="movies_genres" style="background: none">
             </div>
             <div class="row" style="position:relative;top:0%;height: 80%;left: 0%;width: 100%;margin-left: 0px;margin-top: 30px;background-color: darkorange">
                 <input id="background" type="image" src="../img/imdb_.jpg" style="filter:brightness(80%) blur(2px);">
                 <div id = "left_pannel" style="margin-left: 0%;">
                     <br>
-                    <button class="btn-default" type="button" style="color: yellow;background: none;filter:brightness(90%);display: inline-block;width: 200px;height: 30px">
-                        <comment>
+                    <button class="btn-default" type="button"   style="color: yellow;background: none;filter:brightness(90%);display: inline-block;width: 200px;height: 30px;">
+                        <comment id="votes_and_rate">
                             asd
                         </comment>
-                        <img src="../img/star.png" style="position:relative;left:58%;bottom: 30px;width: 40px;height: 25px;display: block;float: right;">
                     </button>
                     <button class="btn-default" type="button" style="color: black;background-color: orange;filter:brightness(90%);border: none;height: 30px">
                         IMDB
@@ -52,7 +43,7 @@
                         <button id="language">
                             wer
                         </button>
-                        <button style="border: solid; border-width: 1px;">
+                        <button id="rate" style="border: solid; border-width: 1px;">
                             PG
                         </button>
                         <button id="country" style="margin-left: 70px">
@@ -70,10 +61,10 @@
                         #10jshdakjshdakjshdakjshdajkshdakjshdajkshdakjshdajkshdasdasdasdasdasdasd
                     </div>
                     <hr>
-                    <div id="producer">
+                    <div id="director" >
                         asdasd
                     </div>
-                    <div id="writer">
+                    <div id="writer" >
                         asdasd
                     </div>
                     <div id="stars">
@@ -81,11 +72,12 @@
                     </div>
 
                 </div>
-                <img id = "film_icon" src="../img/ny.jpg" style="margin-top: 0px;margin-right: 0px;">
+                <img  class="col-lg-3" id = "film_icon" src="../img/ny.jpg" style="margin-top: 0px;margin-right: 0px;background-color: darkorange">
             </div>
         </div>
     </div>
     <script src="../js/jquery_library2.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/movie_info.js"></script>
 </body>
 </html>

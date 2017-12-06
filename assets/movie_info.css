@@ -81,7 +81,7 @@ div::-webkit-scrollbar{
     /*height: auto;*/
 }
 
-#movies_buttons button{
+#movies_genres button{
     /*float: right;*/
     margin-right: 10px;
     font-size: 13px;
@@ -95,7 +95,7 @@ div::-webkit-scrollbar{
 }
 
 
-#movies_buttons{
+#movies_genres{
     width: 100%;
 }
 

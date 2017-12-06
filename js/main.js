@@ -8,16 +8,26 @@ film_ids = ["tt3266284","tt3521126","tt5580390","tt5721088","tt5580036","tt48646
 var json_array = [];
 
 json_array.length = film_ids.length;
-function image_clicked(){
 
+function get_id(img_id){
+    var len = img_id.length;
+    return img_id.toString().substring(3,len);
+}
+
+
+function image_clicked(){
+    img_id = get_id(this.id);
+    console.log(img_id);
+    json = JSON.stringify(json_array[img_id]);
+    //json.toString()
+    var destination_url = "../src/movie_info.html"+"?"+json;
+    window.location=destination_url;
 }
 
 function image_mouse_hover(){
-    var img_id = this.id.toString();
-    img_index = img_id.substring(3,img_id.length);
-    json_data = json_array[img_index];
-    var title = json_data['Title'];
-
+    //var title = json_data['Title'];
+    //console.log(window.location);
+    //console.log($(this).val());
 }
 
 
@@ -37,6 +47,8 @@ $(document).ready(function(){
         img_div.className = "owl-carousel owl-theme";
         img_div.id = "img"+i.toString();
 
+
+
         var ptag = document.createElement("div");
         ptag.id = "p"+i.toString();
 
@@ -54,6 +66,7 @@ $(document).ready(function(){
 
         carousel_div.appendChild(item_div);
     }
+
     var api_key = "30207f26";
     var received_item = 0;
 
