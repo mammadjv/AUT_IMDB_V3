@@ -179,6 +179,7 @@ img:active{
     float: left;
     position: relative;
     width: 100%;
+    /*text-decoration: none;*/
     /*height: 100%;*/
     /*line-height: 100%;*/
 }
@@ -199,7 +200,6 @@ img:active{
     border-bottom: solid;
     border-width: 1px;
     border-bottom-color: black;
-
 }
 
 /*.uservalue{*/
@@ -246,6 +246,7 @@ img:active{
     border-bottom: solid;
     border-width: 1px;
     border-color: red;
+    text-decoration: none;
 }
 
 .optionsul{

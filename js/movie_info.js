@@ -91,7 +91,7 @@ function set_elements_attributes(json){
     var value = json['imdbRating'];
     var votes = json['imdbVotes'];
 
-    document.getElementById('votes_and_rate').innerHTML = value +'&nbsp '+'از  10 با '  + votes + 'رأی';
+    document.getElementById('votes_and_rate').innerHTML = value +'&nbsp '+'از  10 با '  + votes + ' رأی';
 
 
     var actors = json['Actors'].split(',');
@@ -104,7 +104,15 @@ function set_elements_attributes(json){
     }
 }
 
+
+
+function set_inner(){
+    document.getElementById("sep_tag").innerHTML = this.innerHTML;
+}
+
+
 jQuery(document).ready(function($){
+
     var passed_value = window.location.search;
     //console.log("salam");
 
@@ -118,4 +126,11 @@ jQuery(document).ready(function($){
         console.log(json);
         set_elements_attributes(json);
     });
+
+    var atags = document.getElementsByClassName("filmstateelemet");
+    for(var i = 0 ; i < atags.length; i++){
+        atag = atags[i];
+        atag.id = 'a'+i;
+        atag.onclick = set_inner;
+    }
 });
