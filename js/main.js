@@ -6,6 +6,7 @@
 film_ids = ["tt3266284","tt3521126","tt5580390","tt5721088","tt5580036","tt4864624","tt3531176","tt2380307",
     "tt0974015","tt2543472","tt3402236","tt6359956","tt1485796","tt4209788","tt5711148"];
 var json_array = [];
+var api_key = "30207f26";
 
 json_array.length = film_ids.length;
 
@@ -17,10 +18,11 @@ function get_id(img_id){
 
 function image_clicked(){
     img_id = get_id(this.id);
-    console.log(img_id);
-    json = JSON.stringify(json_array[img_id]);
+    //console.log(img_id);
+    //json = JSON.stringify(json_array[img_id]);
     //json.toString()
-    var destination_url = "../src/movie_info.html"+"?"+json;
+    json = json_array[img_id]
+    var destination_url = "../src/movie_info.html"+"?id="+json['imdbID']+"&apikey="+api_key;
     window.location=destination_url;
 }
 
@@ -57,8 +59,6 @@ $(document).ready(function(){
 
         // add events
         img_div.onclick = image_clicked;
-        img_div.onmouseover = image_mouse_hover;
-        img_div.onmouseout = image_mouse_out;
 
         item_div.appendChild(img_div);
         item_div.appendChild(ptag);
@@ -67,7 +67,6 @@ $(document).ready(function(){
         carousel_div.appendChild(item_div);
     }
 
-    var api_key = "30207f26";
     var received_item = 0;
 
     for (var i = 0 ; i < film_ids.length ; i++) {

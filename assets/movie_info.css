@@ -55,11 +55,31 @@ div::-webkit-scrollbar{
     /*margin-top: 4px;*/
 }
 
-#time_country button{
+#time_country label{
     border: none;
     margin-right: 30px;
+    font-size: medium;
 }
 
+
+#director *{
+    border:none;
+    direction: ltr;
+    font-size: small;
+}
+
+#stars *{
+    border:none;
+    direction: ltr;
+    font-size: small;
+}
+
+
+#writer *{
+    border:none;
+    direction: ltr;
+    font-size: small;
+}
 
 .movie_info{
     position: relative;
