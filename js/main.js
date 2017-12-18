@@ -3,6 +3,7 @@
  */
 
 
+
 film_ids = ["tt3266284","tt3521126","tt5580390","tt5721088","tt5580036","tt4864624","tt3531176","tt2380307",
     "tt0974015","tt2543472","tt3402236","tt6359956","tt1485796","tt4209788","tt5711148"];
 var json_array = [];
@@ -44,25 +45,28 @@ $(document).ready(function(){
     for (var i = 0 ; i < film_ids.length ; i++){
         var item_div = document.createElement("div");
         item_div.className = "item";
+        item_div.id = "item" + i.toString();
 
-        var img_div = document.createElement("img");
+        var img_div = document.createElement("div");
         img_div.className = "owl-carousel owl-theme";
         img_div.id = "img"+i.toString();
 
+        //var img_text = document.createElement("button");
+        //img_text.className = "centered";
+        //img_text.innerHTML = "khar";
 
+        //var ptag = document.createElement("div");
+        //ptag.id = "p"+i.toString();
 
-        var ptag = document.createElement("div");
-        ptag.id = "p"+i.toString();
-
-        var h1 = document.createElement("h1");
-        h1.id = "h"+i.toString();
+        //var h1 = document.createElement("h1");
+        //h1.id = "h"+i.toString();
 
         // add events
         img_div.onclick = image_clicked;
 
         item_div.appendChild(img_div);
-        item_div.appendChild(ptag);
-        ptag.appendChild(h1);
+        //item_div.appendChild(img_text);
+        //ptag.appendChild(h1);
 
         carousel_div.appendChild(item_div);
     }
@@ -75,19 +79,27 @@ $(document).ready(function(){
 
             console.log(object);
             var element = document.getElementById("img"+received_item.toString());
+            element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
+            //element.setAttribute('src',object['Poster']);
+            //element.setAttribute('background','url(\''+object['Poster']+'\') repeat') ;
+            //var selected_item = document.getElementById("item"+received_item.toString());
+            //var p_tag = document.createElement("div");
+            //p_tag.innerHTML = "khar";
+            //p_tag.setAttribute('style','width:100px;height:100px');
 
-            element.setAttribute('src',object['Poster']);
-            //element.setAttribute('style','background:url('+object['Poster']+')'+';background-size: cover; background-repeat:no-repeat; background-position:center');
+            //selected_item.appendChild(p_tag);
 
-            var h1 = document.getElementById("h"+received_item.toString());
+
+
+            //var h1 = document.getElementById("h"+received_item.toString());
             //ptag.innerHTML = "SALAM"
 
             json_array[received_item] = object;
 
-            h1.innerHTML = "khar";
+            //h1.innerHTML = "khar";
 
             element.id = "img"+received_item.toString();
-            ptag.id = "p"+received_item.toString();
+            //ptag.id = "p"+received_item.toString();
 
             received_item++;
         });
