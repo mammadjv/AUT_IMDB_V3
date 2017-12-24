@@ -162,7 +162,6 @@ img:active{
 
 }
 
-
 .filmstate{
     font-size: 15px;
     margin-right: 10%;
@@ -199,7 +198,7 @@ img:active{
     background-color: white;
     border-bottom: solid;
     border-width: 1px;
-    border-bottom-color: black;
+    border-bottom-color: lightgrey;
 }
 
 /*.uservalue{*/
@@ -245,7 +244,7 @@ img:active{
     background-color: white;
     border-bottom: solid;
     border-width: 1px;
-    border-color: red;
+    border-color: darkslategray;
     text-decoration: none;
 }
 

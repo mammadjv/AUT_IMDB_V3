@@ -1,0 +1,58 @@
+
+.profile_state{
+    /*align-content: center;*/
+    /*vertical-align: middle;*/
+    /*font-size: 30px;*/
+    /*margin-right: 14%;*/
+    background-color: white;
+
+}
+
+.select_state {
+    background-color: white;
+    border-bottom: solid;
+    border-width: 2px;
+    border-bottom-color: lightgrey;
+    font-size: large;
+    text-decoration: none;
+}
+
+.select_state:hover {
+    text-decoration: none;
+    color:darkslategray;
+    border-bottom-color: darkslategray;
+}
+
+li {
+    float: right;
+}
+
+li button{
+    display: inline-block;
+    color: darkgray;
+    text-align: center;
+    padding: 24px 30px;
+    text-decoration: none;
+    border:none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightgray;
+}
+
+li select{
+    /*display: inline-block;*/
+    color: black;
+    text-align: center;
+    position:relative;
+    /*width: 100%;*/
+    padding: 0px 0px;
+    margin: 0 0 5px 10px;
+    text-decoration: none;
+}
+
+
