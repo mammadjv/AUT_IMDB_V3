@@ -20,7 +20,7 @@ function get_id(img_id){
 function clean_image_info(){
     var img_id = get_id(this.id);
     var title_id = "title"+img_id.toString();
-    console.log(title_id);
+    //console.log(title_id);
     document.getElementById("item"+img_id.toString()).setAttribute('style','filter:brightness(100%);');
     document.getElementById(title_id).setAttribute('style','opacity:0;color:white;filter:brightness(100%);');
     document.getElementById("d_button_div"+img_id.toString()).setAttribute('style','opacity:0;');
@@ -32,7 +32,7 @@ function show_image_info(){
     var img_id = get_id(this.id);
     var title_id = "title"+img_id.toString();
 
-    console.log(this.id);
+    //console.log(this.id + '   ' + this.target);
 
     document.getElementById(title_id).setAttribute('style','opacity:1;color:white;filter:brightness(100%);');
     document.getElementById("item"+img_id.toString()).setAttribute('style','filter:brightness(50%);');
@@ -40,15 +40,23 @@ function show_image_info(){
     document.getElementById("d_button_div"+img_id.toString()).setAttribute('style','opacity:1;');
 }
 
-function image_clicked(){
+function image_clicked(event){
+    if(event.target.tagName == "BUTTON"){
+        return;
+    }
+
     img_id = get_id(this.id);
-    //console.log(img_id);
-    //json = JSON.stringify(json_array[img_id]);
-    //json.toString()
     json = json_array[img_id]
     var destination_url = "../src/movie_info.html"+"?id="+json['imdbID']+"&apikey="+api_key;
     window.location=destination_url;
 }
+function sag(){
+
+    console.log('khar');
+
+}
+
+
 
 
 $(document).ready(function(){
@@ -65,6 +73,11 @@ $(document).ready(function(){
         img_div.id = "img"+i.toString();
 
         img_div.onclick = image_clicked;
+        //img_div.on('click',function(e){
+        //    if (e.target !== this)
+        //        return;
+        //    console.log('kharrrrrrr');
+        //});
         img_div.onmouseover = show_image_info;
         img_div.onmouseout = clean_image_info;
 
