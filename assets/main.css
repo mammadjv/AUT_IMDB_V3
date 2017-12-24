@@ -16,14 +16,15 @@
 
 #movies_div{
     /*display: block;*/
-    position: relative;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    /*top:20%;*/
-    left:2%;
-    width: 96%;
-    height: 70%;
-    border-radius: 20px;
+    /*position: relative;*/
+    /*margin-top: 30%;*/
+    /*margin-bottom: 5%;*/
+    /*margin-top: 35%;*/
+    /*top:30%;*/
+    /*left:1%;*/
+    margin-top: 30%;
+    width: 100%;
+    border-radius: 4px;
     background-color: black;
 }
 
@@ -240,7 +241,7 @@ li {
 
 li a, .dropbtn {
     display: inline-block;
-    color: black;
+    color: gray;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
@@ -256,7 +257,7 @@ li div{
 
 li select{
     /*display: inline-block;*/
-    color: black;
+    color: gray;
     text-align: center;
     position:relative;
     width: 100%;
@@ -267,8 +268,12 @@ li select{
 
 
 li a:hover, .dropdown:hover .dropbtn {
-    background-color: darkred;
-    color: white;
+    /*background-color: darkgray;*/
+    color: darkslategrey;
+    /*color: white;*/
+    /*filter: brightness(50%);*/
+    /*color: black;*/
+
     text-decoration: none;
 }
 
@@ -335,19 +340,33 @@ div::-webkit-scrollbar{
     background-color: red;
 }
 
-#search_icon{
-    filter: brightness(95%);
-    margin-top:10px;
-    width: 80px;
-    height: 50px;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
-    border: none;
-    background-position: center;
-    background-size: cover;
-    background-repeat:   no-repeat;
+.search_icon{
+    /*filter: brightness(95%);*/
+    /*margin-top:10px;*/
+    /*margin-left: 20px;*/
+    /*left: 20px;*/
+    /*width: 70px;*/
+    /*height: 70px;*/
+    /*border: none;*/
+    /*border-radius: 40px;*/
+    /*border: 1px solid white;*/
+    /*background-position: center;*/
+    /*background-size: cover;*/
+    /*background-repeat:   no-repeat;*/
+    border-radius: 50px;
+    border:none;
+    /*border-top-left-radius: 40px;*/
+    /*color: white;*/
+    /*border: 1px solid white;*/
+    /*background: none;*/
+    width:70px;
+    height: 70px;
 }
 
+
+.input-group-btn button{
+    margin-left: 10px;
+}
 
 .navigation_bar{
     background-color: whitesmoke;
@@ -425,13 +444,15 @@ div::-webkit-scrollbar{
 
 #imdb_image{
     position: relative; top: 0%;
-    /*left: 0%;*/
-    /*width: 100%;*/
-    height: 100%;
+    left: 1%;
+    width: 100%;
+    /*height: 140%;*/
 
-    /*background-color
-    : yellow;*/
+    align-content: center;
+    /*background-position: 50px 150px;*/
+
     background:transparent url('../img/imdb_.jpg') no-repeat center center /cover;
+    /*filter  : blur(10px);*/
 
     /*filter:blur(1px);*/
 }
@@ -501,7 +522,7 @@ div::-webkit-scrollbar{
 }
 
 
-#search_icon:active{
+.search_icon:active{
     /*border:solid;*/
     filter: brightness(80%);
     /*border-color: darkgray;*/
@@ -512,11 +533,12 @@ div::-webkit-scrollbar{
     border: none;
     background-color: whitesmoke;
     margin-top:10px;
-    height: 50px;
+    height: 70px;
     border: none;
     text-align: right;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
+    /*border-top-right-radius: 10px;*/
+    /*border-bottom-right-radius: 10px;*/
 }
 #search_input:focus{
     border:solid;
