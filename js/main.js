@@ -6,21 +6,43 @@
 
 film_ids = ["tt3266284","tt3521126","tt5580390","tt5721088","tt5580036","tt4864624","tt3531176","tt2380307",
     "tt0974015","tt2543472","tt3402236","tt6359956","tt1485796","tt4209788","tt5711148"];
+
+//hottest_films = ["tt5580394","tt5580396", "tt5580396","tt5580386","tt5580384","tt5580380","tt5580376","tt5580372",
+//    "tt5580370","tt5590380","tt5590386","tt5592372","tt5592376","tt5594384"];
+
+hottest_films = film_ids;
+
 var json_array = [];
+var hottest_json_array=[];
+
 var api_key = "30207f26";
 
+
 json_array.length = film_ids.length;
+hottest_json_array.length = hottest_films.length;
 
 function get_id(img_id){
     var len = img_id.length;
+    if(img_id.substring(0,4) == "simg"){
+        console.log(img_id);
+        return img_id.toString().substring(4,len);
+    }
     return img_id.toString().substring(3,len);
 }
 
 
 function clean_image_info(){
     var img_id = get_id(this.id);
+
+    if(this.id.substring(0,4) == 'simg'){
+        var title_id = "stitle"+img_id.toString();
+        document.getElementById("sitem"+img_id.toString()).setAttribute('style','filter:brightness(100%);');
+        document.getElementById(title_id).setAttribute('style','opacity:0;color:white;filter:brightness(100%);');
+        document.getElementById("sd_button_div"+img_id.toString()).setAttribute('style','opacity:0;');
+        document.getElementById("syear"+img_id.toString()).setAttribute('style','opacity:0;');
+        return;
+    }
     var title_id = "title"+img_id.toString();
-    //console.log(title_id);
     document.getElementById("item"+img_id.toString()).setAttribute('style','filter:brightness(100%);');
     document.getElementById(title_id).setAttribute('style','opacity:0;color:white;filter:brightness(100%);');
     document.getElementById("d_button_div"+img_id.toString()).setAttribute('style','opacity:0;');
@@ -30,10 +52,16 @@ function clean_image_info(){
 
 function show_image_info(){
     var img_id = get_id(this.id);
-    var title_id = "title"+img_id.toString();
-
     //console.log(this.id + '   ' + this.target);
-
+    if(this.id.substring(0,4) == 'simg'){
+        var title_id = "stitle"+img_id.toString();
+        document.getElementById(title_id).setAttribute('style','opacity:1;color:white;filter:brightness(100%);');
+        document.getElementById("sitem"+img_id.toString()).setAttribute('style','filter:brightness(50%);');
+        document.getElementById("syear"+img_id.toString()).setAttribute('style','opacity:1;color:yellow;margin-top: 10px;');
+        document.getElementById("sd_button_div"+img_id.toString()).setAttribute('style','opacity:1;');
+        return;
+    }
+    var title_id = "title"+img_id.toString();
     document.getElementById(title_id).setAttribute('style','opacity:1;color:white;filter:brightness(100%);');
     document.getElementById("item"+img_id.toString()).setAttribute('style','filter:brightness(50%);');
     document.getElementById("year"+img_id.toString()).setAttribute('style','opacity:1;color:yellow;margin-top: 10px;');
@@ -44,16 +72,23 @@ function image_clicked(event){
     if(event.target.tagName == "BUTTON"){
         return;
     }
-    img_id = get_id(this.id);
-    json = json_array[img_id]
+    var img_id = get_id(this.id);
+
+    var json;
+    if(this.id.substring(0,4) == 'simg'){
+        json = hottest_json_array[img_id];
+        console.log(json)
+    }
+    else{
+        json = json_array[img_id]
+    }
+
     var destination_url = "../src/movie_info.html"+"?id="+json['imdbID']+"&apikey="+api_key;
     window.location=destination_url;
 }
 
-$(document).ready(function(){
-
+function init_first_carousel(){
     var carousel_div = document.getElementById("owl-demo");
-    carousel_div.className += " row";
     for (var i = 0 ; i < film_ids.length ; i++){
         var item_div = document.createElement("div");
         item_div.className = "item";
@@ -64,17 +99,11 @@ $(document).ready(function(){
         img_div.id = "img"+i.toString();
 
         img_div.onclick = image_clicked;
-        //img_div.on('click',function(e){
-        //    if (e.target !== this)
-        //        return;
-        //    console.log('kharrrrrrr');
-        //});
+
         img_div.onmouseover = show_image_info;
         img_div.onmouseout = clean_image_info;
 
         item_div.appendChild(img_div);
-        //item_div.appendChild(img_text);
-        //ptag.appendChild(h1);
 
         carousel_div.appendChild(item_div);
     }
@@ -84,7 +113,6 @@ $(document).ready(function(){
     for (var i = 0 ; i < film_ids.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + film_ids[i] + "&apikey=" + api_key;
         $.get(url).done(function (object){
-            console.log(object);
             var element = document.getElementById("img"+received_item.toString());
             element.className = "img_tile row";
             element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
@@ -130,8 +158,90 @@ $(document).ready(function(){
             received_item++;
         });
     }
+}
 
-    console.log(json_array.length);
+function init_second_carousel(){
+
+    var carousel_div = document.getElementById("second_owl_demo");
+
+    for (var i = 0 ; i < hottest_films.length ; i++){
+        var item_div = document.createElement("div");
+        item_div.className = "item";
+        item_div.id = "sitem" + i.toString();
+
+        var img_div = document.createElement("div");
+        img_div.className = "owl-carousel owl-theme";
+        img_div.id = "simg"+i.toString();
+
+        img_div.onclick = image_clicked;
+
+        img_div.onmouseover = show_image_info;
+        img_div.onmouseout = clean_image_info;
+
+        item_div.appendChild(img_div);
+        carousel_div.appendChild(item_div);
+    }
+
+
+    var received_item = 0;
+
+    for (var i = 0 ; i < hottest_films.length ; i++) {
+        var url = "http://www.omdbapi.com/?i=" + hottest_films[i] + "&apikey=" + api_key;
+        console.log(url);
+        $.get(url).done(function (object){
+            var element = document.getElementById("simg"+received_item.toString());
+            element.className = "img_tile row";
+            element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
+
+            var film_title = document.createElement("label");
+            film_title.className = "col-xs-12";
+            film_title.id = "stitle"+received_item.toString();
+            film_title.innerHTML = object['Title'];
+
+            var br = document.createElement("br");
+
+            var film_year = document.createElement("label");
+            film_year.className = "col-xs-12 year";
+            film_year.id = "syear"+received_item.toString();
+            film_year.innerHTML = object['Year'];
+
+
+            var download_buttons_div = document.createElement("div");
+            download_buttons_div.className= "row d_button_div btn-toolbar";
+            download_buttons_div.id= "sd_button_div"+received_item.toString();
+
+            for (var  i = 0 ; i < 3 ; i++){
+                var d_button = document.createElement("button");
+                if(i == 0){
+                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt col-xs-4";
+                }
+                if(i == 1){
+                    d_button.className = "btn btn-default glyphicon glyphicon-film col-xs-4";
+                }
+                if(i == 2){
+                    d_button.className = "btn btn-default glyphicon glyphicon-heart col-xs-4";
+                }
+                download_buttons_div.appendChild(d_button);
+            }
+
+            element.appendChild(film_title);
+            element.appendChild(film_year);
+            element.appendChild(download_buttons_div);
+            hottest_json_array[received_item] = object;
+            element.id = "simg"+received_item.toString();
+
+            received_item++;
+        });
+    }
+}
+
+
+$(document).ready(function(){
+    init_first_carousel();
+    //console.log(json_array.length);
+
+    init_second_carousel();
+
     $("#owl-demo").owlCarousel({
         rtl:true,
         //navigation : true, // Show next and prev buttons
@@ -163,10 +273,39 @@ $(document).ready(function(){
                 loop:false
             }
         }
-        // itemsDesktop : false,
-        // itemsDesktopSmall : false,
-        // itemsTablet: false,
-        // itemsMobile : false
+    });
+
+    $("#second_owl_demo").owlCarousel({
+        rtl:true,
+        //navigation : true, // Show next and prev buttons
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        // singleItem:true,
+        autoPlay: true,
+        autoPlay: 3000,
+        responsiveClass:true,
+
+        // "singleItem:true" is a shortcut for:
+        items : hottest_films.length,
+        responsive:{
+            0:{
+                items:2,
+                nav:false
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            800:{
+                items:4,
+                nav:true,
+            },
+            1000:{
+                items:6,
+                nav:true,
+                loop:false
+            }
+        }
     });
 
 });

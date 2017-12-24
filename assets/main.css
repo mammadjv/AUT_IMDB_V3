@@ -1,17 +1,31 @@
-
 #owl-demo {
     display: block;
-    position: relative;
+    /*position: relative;*/
     margin-top: 0px;
     margin-bottom: 0px;
-    /*top:1%;*/
+    top:0%;
     left:5%;
     width: 93%;
     /*right: 10%;*/
-    height: 53%;
+    /*height: 90%;*/
     border-radius: 20px;
     background-color: black;
     color: black;
+}
+
+#second_owl_demo{
+    display: block;
+    /*position: relative;*/
+    margin-top: 20px;
+    margin-bottom: 0px;
+    top:20px;
+    left:5%;
+    width: 93%;
+    /*right: 10%;*/
+    /*height: 90%;*/
+    border-radius: 20px;
+    /*background-color: black;*/
+    color: white;
 }
 
 #movies_div{
@@ -22,7 +36,7 @@
     /*margin-top: 35%;*/
     /*top:30%;*/
     /*left:1%;*/
-    margin-top: 30%;
+    margin-top: 28%;
     width: 100%;
     border-radius: 4px;
     background-color: black;
@@ -80,7 +94,7 @@
 .item div{
     display: block;
     top:0px;
-    height: 260px;
+    height: 250px;
     margin: 10px;
     color: red;
     background-size: 100% 100%;
@@ -128,7 +142,7 @@
     font-size: medium;
 }
 
-.d_button_div{
+.d_button_div , .sd_button_div {
     display: block;
     padding-top: 100px;
     opacity: 0;
@@ -136,7 +150,7 @@
 }
 
 
-.d_button_div button{
+.d_button_div button, .sd_button_div button{
     border-radius: 30px;
     color: white;
     border: 1px solid white;
@@ -183,7 +197,7 @@
 }
 .slider-caption-heder h1 span {color: #A78E6C;}
 
-#owl-demo .item{
+.item{
     /*background: #3fbf79;*/
     /*position: relative;*/
     /*text-align: center;*/
@@ -195,7 +209,7 @@
     border-radius: 3px;
     left: 0%;
     /*top : 10%;*/
-    /*margin-top: 40%;*/
+    /*margin-top: px;*/
     width: 96%;
     position: relative;
     text-align: center;
@@ -446,7 +460,7 @@ div::-webkit-scrollbar{
     position: relative; top: 0%;
     left: 1%;
     width: 100%;
-    /*height: 140%;*/
+    /*height: 150%;*/
 
     align-content: center;
     /*background-position: 50px 150px;*/
