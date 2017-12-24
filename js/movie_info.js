@@ -53,7 +53,7 @@ function set_elements_attributes(json){
     var genres = json['Genre'].split(',');
     for (var i = 0 ; i < genres.length ; i++){
         genre = genres[i];
-        var genre_button = document.createElement("button");
+        var genre_button = document.createElement("label");
         genre_button.innerHTML = genre;
         movies_genres.appendChild(genre_button);
     }

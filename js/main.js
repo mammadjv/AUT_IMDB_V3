@@ -44,20 +44,11 @@ function image_clicked(event){
     if(event.target.tagName == "BUTTON"){
         return;
     }
-
     img_id = get_id(this.id);
     json = json_array[img_id]
     var destination_url = "../src/movie_info.html"+"?id="+json['imdbID']+"&apikey="+api_key;
     window.location=destination_url;
 }
-function sag(){
-
-    console.log('khar');
-
-}
-
-
-
 
 $(document).ready(function(){
 
