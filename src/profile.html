@@ -13,35 +13,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body>
-<div class="row" style="margin-top: 40px">
-    <div class=" col-md-offset-2 col-md-8">
-        <ul class="profile_state">
-            <li >
-                <button class="select_state">دانلود</button>
-            </li>
-            <li>
-                <button class="select_state">زیرنویس</button>
-            </li>
-            <li >
-                <button class="select_state">نظر کاربران</button>
-            </li>
-            <li>
-                <button class="select_state">نقد و بررسی</button>
-            </li>
-            <li>
-                <button class="select_state">عوامل فیلم</button>
-            </li>
-            <li>
-                <button class="select_state">جوایز</button>
-            </li>
-            <li>
-                <button class="select_state">گالری</button>
-            </li>
-        </ul>
-    </div>
-</div>
 
+<body>
+<div class="col-md-offset-2 col-md-10" style="margin-top:40px;direction: rtl" >
+
+        <button class="select_state col-md-2">تیکت</button>
+
+        <button class="select_state col-md-2">فیلم‌های موردعلاقه</button>
+
+        <button class="select_state col-md-2">سبد دانلود</button>
+
+        <button class="select_state col-md-2">خرید اشتراک</button>
+
+        <button class="select_state col-md-2">تنظیمات</button>
+
+
+</div>
+<div class="col-md-offset-2 col-md-10" style="background-color: transparent;margin-bottom: 60px;">
+    <div class=" col-md-8" style="background-color: transparent;">
+        <label style="float: right;" class="header_label">شماره همراه</label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form>
+            <div class="form-group">
+                <input  type="number" class="form-control" id="phone_number" aria-describedby="emailHelp" placeholder="شماره تلفن">
+                <br>
+                <button id="save_phone" class="btn btn-default">ذخیره شماره تماس</button>
+            </div>
+            <br>
+            <br>
+
+            <br>
+            <label style="float: right;" class="header_label">ویرایش اطلاعات کاربری</label>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="name">نام</label>
+                <br>
+                <input type="email" class="form-control" id="name" placeholder="نام">
+                <br>
+                <label for="family_name">نام خانوادگی</label>
+                <br>
+                <input type="email" class="form-control" id="family_name" placeholder="نام خانوادگی">
+                <br>
+                <label for="common_name">نام مستعار</label>
+                <br>
+                <input type="email" class="form-control" id="common_name" placeholder="نام مستعار">
+                <br>
+                <label for="email">ایمیل ( نام کاربری )</label>
+                <br>
+                <input type="email" class="form-control" id="email" placeholder="ایمیل">
+                <br>
+                <button type="submit" class="btn update_info">به روز رسانی</button>
+            </div>
+        </form>
+    </div>
+    <article class="col-md-2" style="margin-top: 10px;background-color: white">
+        <div>
+            <button style="direction: rtl">
+                ویرایش اطلاعات کاربری
+            </button>
+        </div>
+        <div>
+            <button style="direction: rtl">
+        تغییر رمز عبور
+            </button>
+        </div>
+        <div>
+            <button style="direction: rtl">
+        انتقال اشتراک از سایت قدیم
+            </button>
+        </div>
+        <div>
+            <button style="direction: rtl">
+        دعوت از دوستان
+            </button>
+        </div>
+    </article>
+</div>
 <script src="../js/jquery_library2.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>

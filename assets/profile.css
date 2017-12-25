@@ -1,58 +1,79 @@
 
+button:focus{
+    outline: 0 !important;
+    border-bottom-color: dodgerblue;
+    color: dodgerblue;
+}
+
 .profile_state{
-    /*align-content: center;*/
-    /*vertical-align: middle;*/
-    /*font-size: 30px;*/
-    /*margin-right: 14%;*/
     background-color: white;
 
 }
 
 .select_state {
+    display: inline-block;
+    color: darkgray;
+    text-align: center;
+    border:transparent;
     background-color: white;
     border-bottom: solid;
     border-width: 2px;
     border-bottom-color: lightgrey;
-    font-size: large;
-    text-decoration: none;
+    text-decoration: dashed;
+    padding: 14px 0px;
 }
+
+article button:hover{
+    color: black;
+}
+
+article button:focus{
+    color: dodgerblue;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.header_label{
+    border-bottom: solid;
+    border-bottom-color:darkgray;
+    border-width: 2px;
+    margin-top: 30px;
+}
+
+
+#save_phone, .update_info{
+    margin-top: 10px;
+    background-color: mediumseagreen;
+    color: white;
+    border: mediumseagreen;
+}
+
+article button{
+   margin-top: 25px;
+   float: right;
+    color: darkgray;
+    border: none;
+}
+
+article label, div label{
+    color: darkgray;
+}
+
+
+form *{
+    /*float: right;*/
+    direction: rtl;
+}
+
+
 
 .select_state:hover {
     text-decoration: none;
     color:darkslategray;
     border-bottom-color: darkslategray;
 }
-
-li {
-    float: right;
-}
-
-li button{
-    display: inline-block;
-    color: darkgray;
-    text-align: center;
-    padding: 24px 30px;
-    text-decoration: none;
-    border:none;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: lightgray;
-}
-
-li select{
-    /*display: inline-block;*/
-    color: black;
-    text-align: center;
-    position:relative;
-    /*width: 100%;*/
-    padding: 0px 0px;
-    margin: 0 0 5px 10px;
-    text-decoration: none;
-}
-
-
