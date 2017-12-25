@@ -1,7 +1,7 @@
-
 button:focus{
     outline: 0 !important;
     border-bottom-color: dodgerblue;
+    border-left-color: dodgerblue;
     color: dodgerblue;
 }
 
@@ -10,7 +10,21 @@ button:focus{
 
 }
 
-.select_state {
+.right_tab{
+    display: inline-block;
+    color: darkgray;
+    text-align: center;
+    border:transparent;
+    background-color: white;
+    border-left: solid;
+    border-width: 2px;
+    border-left-color: lightgrey;
+    text-decoration: dashed;
+    padding: 20px 20px;
+    margin-top: 0;
+}
+
+.upper_tab {
     display: inline-block;
     color: darkgray;
     text-align: center;
@@ -25,6 +39,7 @@ button:focus{
 
 article button:hover{
     color: black;
+    border-left-color: #122b40;
 }
 
 article button:focus{
@@ -36,7 +51,6 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 
 .header_label{
     border-bottom: solid;
@@ -58,22 +72,23 @@ article button{
    float: right;
     color: darkgray;
     border: none;
+
 }
 
 article label, div label{
     color: darkgray;
 }
 
-
 form *{
     /*float: right;*/
     direction: rtl;
 }
 
-
-
-.select_state:hover {
+.upper_tab:hover {
     text-decoration: none;
     color:darkslategray;
     border-bottom-color: darkslategray;
 }
+
+
+
