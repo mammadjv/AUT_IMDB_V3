@@ -47,7 +47,7 @@ function set_elements_attributes(json){
 
     document.getElementById("film_name").innerHTML = 'دانلود فیلم '+json['Title'];
 
-    movies_genres = document.getElementById("movies_genres");
+    var movies_genres = document.getElementById("movies_genres");
     var genres = json['Genre'];
 
     var genres = json['Genre'].split(',');

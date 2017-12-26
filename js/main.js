@@ -23,18 +23,18 @@ hottest_json_array.length = hottest_films.length;
 
 function get_id(img_id){
     var len = img_id.length;
-    if(img_id.substring(0,4) == "simg"){
+    if(img_id.substring(0,5) == "sitem"){
         console.log(img_id);
-        return img_id.toString().substring(4,len);
+        return img_id.toString().substring(5,len);
     }
-    return img_id.toString().substring(3,len);
+    return img_id.toString().substring(4,len);
 }
 
 
 function clean_image_info(){
     var img_id = get_id(this.id);
 
-    if(this.id.substring(0,4) == 'simg'){
+    if(this.id.substring(0,5) == 'sitem'){
         var title_id = "stitle"+img_id.toString();
         document.getElementById("sitem"+img_id.toString()).setAttribute('style','filter:brightness(100%);');
         document.getElementById(title_id).setAttribute('style','opacity:0;color:white;filter:brightness(100%);');
@@ -53,7 +53,7 @@ function clean_image_info(){
 function show_image_info(){
     var img_id = get_id(this.id);
     //console.log(this.id + '   ' + this.target);
-    if(this.id.substring(0,4) == 'simg'){
+    if(this.id.substring(0,5) == 'sitem'){
         var title_id = "stitle"+img_id.toString();
         document.getElementById(title_id).setAttribute('style','opacity:1;color:white;filter:brightness(100%);');
         document.getElementById("sitem"+img_id.toString()).setAttribute('style','filter:brightness(50%);');
@@ -75,7 +75,7 @@ function image_clicked(event){
     var img_id = get_id(this.id);
 
     var json;
-    if(this.id.substring(0,4) == 'simg'){
+    if(this.id.substring(0,5) == 'sitem'){
         json = hottest_json_array[img_id];
         console.log(json)
     }
@@ -95,13 +95,13 @@ function init_first_carousel(){
         item_div.id = "item" + i.toString();
 
         var img_div = document.createElement("div");
-        img_div.className = "owl-carousel owl-theme";
+        img_div.className = "img_tile";
         img_div.id = "img"+i.toString();
 
-        img_div.onclick = image_clicked;
+        item_div.onclick = image_clicked;
 
-        img_div.onmouseover = show_image_info;
-        img_div.onmouseout = clean_image_info;
+        item_div.onmouseover = show_image_info;
+        item_div.onmouseout = clean_image_info;
 
         item_div.appendChild(img_div);
 
@@ -113,9 +113,11 @@ function init_first_carousel(){
     for (var i = 0 ; i < film_ids.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + film_ids[i] + "&apikey=" + api_key;
         $.get(url).done(function (object){
-            var element = document.getElementById("img"+received_item.toString());
-            element.className = "img_tile row";
-            element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
+
+
+            var item_element = document.getElementById("item"+received_item.toString());
+            var img_element = document.getElementById("img"+received_item.toString());
+            img_element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
 
             var film_title = document.createElement("label");
             film_title.className = "col-xs-12";
@@ -149,11 +151,11 @@ function init_first_carousel(){
                 download_buttons_div.appendChild(d_button);
             }
 
-            element.appendChild(film_title);
-            element.appendChild(film_year);
-            element.appendChild(download_buttons_div);
+            img_element.appendChild(film_title);
+            img_element.appendChild(film_year);
+            img_element.appendChild(download_buttons_div);
             json_array[received_item] = object;
-            element.id = "img"+received_item.toString();
+            img_element.id = "img"+received_item.toString();
 
             received_item++;
         });
@@ -166,19 +168,33 @@ function init_second_carousel(){
 
     for (var i = 0 ; i < hottest_films.length ; i++){
         var item_div = document.createElement("div");
-        item_div.className = "item";
+        item_div.className = "sitem";
         item_div.id = "sitem" + i.toString();
 
+
+        var br = document.createElement("br");
+
         var img_div = document.createElement("div");
-        img_div.className = "owl-carousel owl-theme";
+        img_div.className = "img_tile";
         img_div.id = "simg"+i.toString();
 
-        img_div.onclick = image_clicked;
 
-        img_div.onmouseover = show_image_info;
-        img_div.onmouseout = clean_image_info;
+        var movie_genres = document.createElement("article");
+        movie_genres.className = "movies_genres row";
+        movie_genres.id = "movies_genres" + i.toString();
 
+
+        //item_div.onclick = image_clicked;
+        //item_div.onmouseover = show_image_info;
+        //item_div.onmouseout = clean_image_info;
+
+        item_div.appendChild(br);
         item_div.appendChild(img_div);
+        //item_div.appendChild(br);
+        //item_div.appendChild(br);
+        item_div.appendChild(movie_genres);
+        //item_div.appendChild(br);
+
         carousel_div.appendChild(item_div);
     }
 
@@ -189,16 +205,48 @@ function init_second_carousel(){
         var url = "http://www.omdbapi.com/?i=" + hottest_films[i] + "&apikey=" + api_key;
         console.log(url);
         $.get(url).done(function (object){
+
+            var item_element = document.getElementById("sitem"+received_item.toString());
+
             var element = document.getElementById("simg"+received_item.toString());
-            element.className = "img_tile row";
             element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
+
+            var genres_div = document.getElementById("movies_genres"+received_item.toString());
+
+            var genres = object['Genre'].split(',');
+            var num_genres = genres.length;
+            var width = (95/num_genres).toString()+'%';
+
+            for (var i = 0 ; i < genres.length ; i++){
+                var genre_button = document.createElement("label");
+
+                var genre = genres[i];
+                genre_button.innerHTML = genre;
+
+                if(i>0){
+                    if(num_genres==2 || num_genres==1){
+                        genre_button.setAttribute('style','padding:0px 0px;margin-left:2px;font-size:10px;width:'+width.toString());
+                    }
+                    else{
+                        genre_button.setAttribute('style','font-size:7px;margin-left:2px;width:'+width.toString());
+                    }
+                }
+                else{
+                    if(num_genres == 2 || num_genres==1){
+                        genre_button.setAttribute('style','padding:0px 0px;font-size:10px;width:'+width.toString());
+                    }
+                    else{
+                        genre_button.setAttribute('style','font-size:7px;width:'+width.toString());
+                    }
+
+                }
+                genres_div.appendChild(genre_button);
+            }
 
             var film_title = document.createElement("label");
             film_title.className = "col-xs-12";
             film_title.id = "stitle"+received_item.toString();
             film_title.innerHTML = object['Title'];
-
-            var br = document.createElement("br");
 
             var film_year = document.createElement("label");
             film_year.className = "col-xs-12 year";
@@ -223,7 +271,6 @@ function init_second_carousel(){
                 }
                 download_buttons_div.appendChild(d_button);
             }
-
             element.appendChild(film_title);
             element.appendChild(film_year);
             element.appendChild(download_buttons_div);

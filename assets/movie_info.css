@@ -103,14 +103,14 @@ div::-webkit-scrollbar{
 #movies_genres button{
     /*float: right;*/
     margin-right: 10px;
-    font-size: 13px;
     background-color: lightgrey;
     border:solid;
     color: darkslateblue;
-    width: 80px;
-    height: 40px;
+    /*width: 80px;*/
+    /*height: 40px;*/
     border-radius: 6px;
     margin-top: 3px;
+    font-size: large;
 }
 
 
