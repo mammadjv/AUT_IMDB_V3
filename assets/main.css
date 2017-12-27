@@ -109,7 +109,7 @@
 }
 
 .movies_genres{
-    background-color: yellow;
+    /*background-color: yellow;*/
     direction: ltr;
 }
 
@@ -121,6 +121,7 @@
     border:solid;
     color: darkslateblue;
     border-radius: 6px;
+    border-width: 2px;
     text-overflow: ellipsis;
     white-space: nowrap;
     /*white-space: nowrap;*/
@@ -142,9 +143,10 @@
 
 
 .sitem article{
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     width: 90%;
     margin-right: 5%;
+    z-index: 1;
 }
 
 
@@ -157,6 +159,7 @@
     background-position:center;
     width: 90%;
     margin-right: 5%;
+    z-index: 1;
 }
 
 
@@ -294,9 +297,10 @@
     /*width: 100%;*/
     height: 340px;
     text-align: center;
+    z-index: 0;
     font-family: Arial;
     color: white;
-    background: linear-gradient(to bottom, blue 0%,blue 50%,red 50%,red 100%); /* W3C */
+    background: linear-gradient(to bottom, #707070 0%,#707070 50%,#ffb10b 50%,#ffb10b 100%); /* W3C */
 }
 
 .item_image{

@@ -133,20 +133,23 @@ function init_first_carousel(){
 
 
             var download_buttons_div = document.createElement("div");
-            download_buttons_div.className= "row d_button_div btn-toolbar";
+            download_buttons_div.className= "row d_button_div";
             download_buttons_div.id= "d_button_div"+received_item.toString();
 
 
             for (var  i = 0 ; i < 3 ; i++){
                 var d_button = document.createElement("button");
                 if(i == 0){
-                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt col-xs-4";
+                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt  ";
+                    //d_button.setAttribute('style','ma')
+                    d_button.setAttribute('style','margin-left:3px')
                 }
                 if(i == 1){
-                    d_button.className = "btn btn-default glyphicon glyphicon-film col-xs-4";
+                    d_button.className = "btn btn-default glyphicon glyphicon-film ";
+                    d_button.setAttribute('style','margin-left:3px')
                 }
                 if(i == 2){
-                    d_button.className = "btn btn-default glyphicon glyphicon-heart col-xs-4";
+                    d_button.className = "btn btn-default glyphicon glyphicon-heart ";
                 }
                 download_buttons_div.appendChild(d_button);
             }
@@ -180,19 +183,25 @@ function init_second_carousel(){
 
 
         var movie_genres = document.createElement("article");
-        movie_genres.className = "movies_genres row";
+        movie_genres.className = "movies_genres";
         movie_genres.id = "movies_genres" + i.toString();
 
 
+
+        var movie_quality = document.createElement("article");
+        movie_quality.className = "movies_genres";
+        movie_quality.id = "movies_quality" + i.toString();
+
         //item_div.onclick = image_clicked;
-        //item_div.onmouseover = show_image_info;
-        //item_div.onmouseout = clean_image_info;
+        item_div.onmouseover = show_image_info;
+        item_div.onmouseout = clean_image_info;
 
         item_div.appendChild(br);
         item_div.appendChild(img_div);
         //item_div.appendChild(br);
         //item_div.appendChild(br);
         item_div.appendChild(movie_genres);
+        item_div.appendChild(movie_quality);
         //item_div.appendChild(br);
 
         carousel_div.appendChild(item_div);
@@ -243,6 +252,25 @@ function init_second_carousel(){
                 genres_div.appendChild(genre_button);
             }
 
+
+
+            var movie_quality = document.getElementById("movies_quality"+received_item.toString());
+
+            var quality = document.createElement("label");
+            quality.innerHTML = "BlueRay";
+            //quality.className = "col-lg-6"
+            movie_quality.appendChild(quality);
+            quality.setAttribute('style','width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
+            //quality.setAttribute('style','font-size:7px;width:50%');
+
+            var rate = document.createElement("label");
+            rate.innerHTML = object['imdbRating'];
+            movie_quality.appendChild(rate);
+            //rate.className = "col-lg-6";
+            rate.setAttribute('style','margin-left:4px;width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
+            //rate.setAttribute('style','font-size:7px;width:'+width.toString());
+
+
             var film_title = document.createElement("label");
             film_title.className = "col-xs-12";
             film_title.id = "stitle"+received_item.toString();
@@ -255,19 +283,21 @@ function init_second_carousel(){
 
 
             var download_buttons_div = document.createElement("div");
-            download_buttons_div.className= "row d_button_div btn-toolbar";
+            download_buttons_div.className= "row d_button_div";
             download_buttons_div.id= "sd_button_div"+received_item.toString();
 
             for (var  i = 0 ; i < 3 ; i++){
                 var d_button = document.createElement("button");
                 if(i == 0){
-                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt col-xs-4";
+                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt";
+                    d_button.setAttribute('style','margin-left:5px')
                 }
                 if(i == 1){
-                    d_button.className = "btn btn-default glyphicon glyphicon-film col-xs-4";
+                    d_button.className = "btn btn-default glyphicon glyphicon-film";
+                    d_button.setAttribute('style','margin-left:5px')
                 }
                 if(i == 2){
-                    d_button.className = "btn btn-default glyphicon glyphicon-heart col-xs-4";
+                    d_button.className = "btn btn-default glyphicon glyphicon-heart";
                 }
                 download_buttons_div.appendChild(d_button);
             }
