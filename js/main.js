@@ -192,7 +192,7 @@ function init_second_carousel(){
         movie_quality.className = "movies_genres";
         movie_quality.id = "movies_quality" + i.toString();
 
-        //item_div.onclick = image_clicked;
+        item_div.onclick = image_clicked;
         item_div.onmouseover = show_image_info;
         item_div.onmouseout = clean_image_info;
 
@@ -344,7 +344,7 @@ $(document).ready(function(){
                 items:4,
                 nav:true,
             },
-            1000:{
+            1200:{
                 items:6,
                 nav:true,
                 loop:false
@@ -377,7 +377,7 @@ $(document).ready(function(){
                 items:4,
                 nav:true,
             },
-            1000:{
+            1200:{
                 items:6,
                 nav:true,
                 loop:false
