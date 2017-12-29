@@ -94,6 +94,7 @@ function set_elements_attributes(json){
     document.getElementById('votes_and_rate').innerHTML = value +'&nbsp '+'از  10 با '  + votes + ' رأی';
 
 
+
     var actors = json['Actors'].split(',');
     var actors_tag = document.getElementById('stars');
     actors_tag.innerHTML = 'بازیگران:  ';
@@ -105,13 +106,20 @@ function set_elements_attributes(json){
 }
 
 
-
 function set_inner(){
-    document.getElementById("sep_tag").innerHTML = this.innerHTML;
+    document.getElementById("comment_tab").innerHTML = this.innerHTML;
 }
 
 
+
 jQuery(document).ready(function($){
+
+
+    $('#ex1').slider({
+        formatter: function(value) {
+            return 'Current value: ' + value;
+        }
+    });
 
     var passed_value = window.location.search;
     //console.log("salam");
@@ -127,7 +135,7 @@ jQuery(document).ready(function($){
         set_elements_attributes(json);
     });
 
-    var atags = document.getElementsByClassName("filmstateelemet");
+    var atags = document.getElementsByClassName("upper_tab");
     for(var i = 0 ; i < atags.length; i++){
         atag = atags[i];
         atag.id = 'a'+i;
