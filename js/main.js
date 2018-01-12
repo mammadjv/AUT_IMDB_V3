@@ -82,7 +82,6 @@ function image_clicked(event){
     else{
         json = json_array[img_id]
     }
-
     var destination_url = "../src/movie_info.html"+"?id="+json['imdbID']+"&apikey="+api_key;
     window.location=destination_url;
 }
@@ -314,6 +313,16 @@ function init_second_carousel(){
 
 
 $(document).ready(function(){
+
+    $.get("../php/auth.php").done(function (object){
+        if(object == "true"){
+            document.getElementById("user_image").setAttribute('style','visibility:visible');
+        }
+        else{
+            document.getElementById("user_image").setAttribute('style','visibility:hidden');
+        }
+    });
+
     init_first_carousel();
     //console.log(json_array.length);
 

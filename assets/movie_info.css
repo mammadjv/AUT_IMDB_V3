@@ -3,6 +3,11 @@
 
 }
 
+.radio-inline{
+    color: grey;
+    /*font-weight: ;*/
+}
+
 
 body div{
     position: fixed; left: 0% ; right: 0%;

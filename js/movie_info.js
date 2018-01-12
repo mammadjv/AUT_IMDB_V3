@@ -1,6 +1,55 @@
 /**
  * Created by mohammad on 12/6/17.
  */
+
+var movie_id;
+var author;
+
+function on_enter() {
+    var key = window.event.keyCode;
+    // If the user has pressed enter
+    if (key === 13) {
+        document.getElementById("comment_text").value = document.getElementById("comment_text").value + "\n";
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+function save_comment(){
+    var comment_text = document.getElementById("comment_text").value;
+    var prod_rate = document.getElementById("prod_range").value;
+    var cast_rate =document.getElementById("cast_range").value;
+    var screen_play_rate =document.getElementById("screen_play_range").value;
+
+    var currentdate = new Date();
+    var datetime = currentdate.getDate() + "/"
+        + (currentdate.getMonth()+1)  + "/"
+        + currentdate.getFullYear() + "  "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+    author = "mohsen hosseini";
+
+    var obj = '{'
+        +'"comment_text" : "' + comment_text.toString() + '",'
+        +'"movie_id" : "' + movie_id.toString() + '",'
+        +'"prod_rate" : "' + prod_rate.toString() + '",'
+        +'"cast_rate" : "' + cast_rate.toString() + '",'
+        +'"screen_play_rate" : "' + screen_play_rate.toString() + '",'
+        +'"date_time" : "' + datetime.toString() + '",'
+        +'"author" : "' + author + '"'
+        +'}';
+
+    console.log(obj);
+    var post_url = "../php/main.php?q="+obj;
+    $.get(post_url,function(value){
+        console.log(value);
+    });
+}
+
 function get_value(page_data, k) {
     if (page_data.hasOwnProperty(k)) {
         console.log('key is: ' + k + ', value is: ' + page_data[k]);
@@ -126,10 +175,10 @@ jQuery(document).ready(function($){
 
     passed_value = passed_value.substring(1,passed_value.length);
     values = passed_value.split("&");
-    var id = values[0].split("=")[1];
+    movie_id = values[0].split("=")[1];
     var key = values[1].split("=")[1];
 
-    var url = "http://www.omdbapi.com/?i=" + id + "&apikey=" + key;
+    var url = "http://www.omdbapi.com/?i=" + movie_id + "&apikey=" + key;
     $.get(url).done(function (json){
         console.log(json);
         set_elements_attributes(json);

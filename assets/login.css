@@ -234,6 +234,8 @@ color: red;
     background-color:  seagreen;
     text-align: center;
     color:white;
+    border: none;
+    border-radius: 10px;
 }
 /*#sign_up_mode{*/
 /*background-color: yellow;*/

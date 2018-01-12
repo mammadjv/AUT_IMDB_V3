@@ -16,6 +16,7 @@
     <!--<!--<link rel="stylesheet" href="assets/css/ie9.css" /><![endif]&ndash;&gt;-->
     <!--<link rel="stylesheet" href="assets/css/ie8.css" /><![endif]&ndash;&gt;-->
 </head>
+
 <body>
 <div id="div_background">
 </div>
@@ -25,8 +26,8 @@
     </div>
     <div id="type_div">
         <a href="login.html">
-        <input id = "sign_in_mode"  type="button" value="ورود" >
-        <a/>
+            <input id = "sign_in_mode"  type="button" value="ورود" >
+        </a>
         <input id = "sign_up_mode"  type="button" value="عضویت">
     </div>
     <input id = "login_with_google"  type="image" src="../img/sign_in.png">
@@ -40,20 +41,20 @@
 
 
         <input id="id_input" type="text" , name="search" placeholder="ایمیل">
-        <input id="pass_input" type="text" , name="search" placeholder="رمز عبور">
-        <input id="pass_repeat_input" type="text" , name="search" placeholder="تکرار رمز عبور">
+        <input id="pass_input" type="password" , name="search" placeholder="رمز عبور">
+        <input id="pass_repeat_input" type="password" , name="search" placeholder="تکرار رمز عبور">
         <input id="invitation_input" type="text" , name="search" placeholder="کد دعوت">
         <input id="captcha_input" type="text" , name="search" placeholder="کد امنیتی">
 
         <img id="captcha_sample" src="../img/captcha_sample.jpg">
-        <!--<input id="password_input" type="text" , name="search" placeholder="رمز عبور">-->
         <input id="save_info" type="checkbox" name="save_info">
         <comment id = "save_my_info_text">قوانین را مطالعه و می‌پذیرم</comment>
-        <input id = "login_button"  type="button" value="ورود">
+        <button id = "login_button" onclick="send_auth()">
+ورود
+        </button>
     </form>
-
-    <!--<label id = "save_my_info_text">مرا به خاطر بسپار</label>-->
-
 </div>
+    <script src="../js/jquery_library2.js"></script>
+    <script type="text/javascript" src="../js/register.js"></script>
 </body>
 </html>

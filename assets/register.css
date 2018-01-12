@@ -1,3 +1,5 @@
+
+
 #div_background{
     position: absolute; top: 0;
     left: 0;
@@ -245,6 +247,9 @@ sup{
     border-color: blue;
 }
 
+
+
+
 #save_my_info_text{
     position: absolute;
     top: 72%;
@@ -277,6 +282,7 @@ sup{
     background-color:  seagreen;
     text-align: center;
     color:white;
+    border-radius: 10px;
 }
 /*#sign_up_mode{*/
 /*background-color: yellow;*/

@@ -1,0 +1,18 @@
+<?php
+    $json_value = json_decode($_REQUEST["q"]);
+    $email = $json_value->email;
+    $password = $json_value->password;
+
+    $sqlconnection = new mysqli("localhost","root","root","mysql");
+    $query = "select * from aut_imdb_users where email=\"".$email."\" and password=\"".$password."\"";
+    $result = $sqlconnection->query($query);
+
+    if ($result->num_rows > 0){
+        session_start();
+        $_SESSION["email"] = $email;
+        $_SESSION["auth"] = "true";
+        echo "success";
+    } else {
+        echo "failure";
+    }
+?>
