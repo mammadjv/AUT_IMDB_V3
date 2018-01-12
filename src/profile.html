@@ -38,9 +38,9 @@
         <br>
         <form>
             <div class="form-group">
-                <input  type="number" class="form-control" id="phone_number" aria-describedby="emailHelp" placeholder="شماره تلفن">
+                <input  type="tel" class="form-control" id="phone_number" placeholder="شماره تلفن">
                 <br>
-                <button id="save_phone" class="btn btn-default">ذخیره شماره تماس</button>
+                <button type=button class="btn update_info" onclick="save_phone_number()">ذخیره شماره تماس</button>
             </div>
             <br>
             <br>
@@ -54,23 +54,24 @@
             <div class="form-group">
                 <label for="name">نام</label>
                 <br>
-                <input type="email" class="form-control" id="name" placeholder="نام">
+                <input type="text" class="form-control" id="name" placeholder="نام">
                 <br>
                 <label for="family_name">نام خانوادگی</label>
                 <br>
-                <input type="email" class="form-control" id="family_name" placeholder="نام خانوادگی">
+                <input type="text" class="form-control" id="family_name" placeholder="نام خانوادگی">
                 <br>
                 <label for="common_name">نام مستعار</label>
                 <br>
-                <input type="email" class="form-control" id="common_name" placeholder="نام مستعار">
+                <input type="text" class="form-control" id="common_name" placeholder="نام مستعار">
                 <br>
                 <label for="email">ایمیل ( نام کاربری )</label>
                 <br>
                 <input type="email" class="form-control" id="email" placeholder="ایمیل">
                 <br>
-                <button type="submit" class="btn update_info">به روز رسانی</button>
             </div>
+            <button  type=button class="btn update_info" onclick="save_whole_user_info()">به روز رسانی</button>
         </form>
+
     </div>
     <article class="col-md-2 btn-group" style="margin-top: 10px;background-color: transparent;">
         <div>
@@ -95,8 +96,8 @@
         </div>
     </article>
 </div>
-
 <script src="../js/jquery_library2.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/profile.js"></script>
 </body>
 </html>

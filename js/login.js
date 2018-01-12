@@ -37,6 +37,7 @@ function login(){
 
     var post_url = "../php/login.php?q="+obj;
     $.get(post_url,function(value){
+        //alert(value);
         if(value == "success"){
             alert("خوش آمدید");
             var destination_url = "../src/main.html";

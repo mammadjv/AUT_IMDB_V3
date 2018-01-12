@@ -14,4 +14,6 @@
         $result = $sqlconnection->query($query);
         echo "welcome";
     }
+//create table aut_imdb_users(id int NOT NULL AUTO_INCREMENT,name varchar(255), family_name varchar(255),common_name varchar(255), email varchar(255), phone_number varchar(255),password varchar(255), PRIMARY KEY(id))
 ?>
+

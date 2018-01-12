@@ -5,6 +5,6 @@
 session_start();
 unset($_SESSION["auth"]);
 unset($_SESSION["email"]);
-//$_SESSION["email"] = "";
+unset($_SESSION["id"]);
 echo "destroyed";
 ?>

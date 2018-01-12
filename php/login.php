@@ -1,4 +1,5 @@
 <?php
+
     $json_value = json_decode($_REQUEST["q"]);
     $email = $json_value->email;
     $password = $json_value->password;
@@ -9,10 +10,13 @@
 
     if ($result->num_rows > 0){
         session_start();
+        $row = $result->fetch_assoc();
         $_SESSION["email"] = $email;
         $_SESSION["auth"] = "true";
+        $_SESSION["id"] = $row["id"];
         echo "success";
-    } else {
+    }
+    else {
         echo "failure";
     }
 ?>

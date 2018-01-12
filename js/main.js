@@ -113,7 +113,6 @@ function init_first_carousel(){
         var url = "http://www.omdbapi.com/?i=" + film_ids[i] + "&apikey=" + api_key;
         $.get(url).done(function (object){
 
-
             var item_element = document.getElementById("item"+received_item.toString());
             var img_element = document.getElementById("img"+received_item.toString());
             img_element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
