@@ -311,6 +311,14 @@ function init_second_carousel(){
     }
 }
 
+function on_logoutclicked(){
+    var url = "../php/logout.php?q=";
+    $.get(url).done(function (object){
+        if(object == "destroyed"){
+            window.location = "../src/main.html";
+        }
+    });
+}
 
 $(document).ready(function(){
 

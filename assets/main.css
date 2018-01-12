@@ -1,3 +1,8 @@
+*{
+    text-decoration: none;
+}
+
+
 #owl-demo {
     display: block;
     /*position: relative;*/
@@ -392,16 +397,17 @@ li.dropdown {
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content a{
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: left;
+    text-align: right;
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
+    text-decoration: none;
 }
 
 .dropdown:hover .dropdown-content {
@@ -667,13 +673,17 @@ div::-webkit-scrollbar{
 }
 
 #user_image{
-    /*position: relative;*/
+    position: relative;
     /*display: block;*/
     /*visibility: hidden;*/
-    margin-left: 10px;
-    width: 47px;
-    height: 47px;
+    top: -2px;
+    width: 55px;
+    height: 55px;
     border-radius: 30px;
+    margin-left:0px;
+    background: none;
+    border:none;
+    /*background-color: red;*/
 }
 
 

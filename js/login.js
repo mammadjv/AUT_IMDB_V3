@@ -23,7 +23,7 @@ function login(){
         error_msg+="تصویر امنیتی اشتباه است";
         error_msg+="\n";
     }
-    alert(error_msg);
+    //alert(error_msg);
 
     if(error_msg != ""){
         return;
