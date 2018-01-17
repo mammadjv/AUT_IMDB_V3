@@ -32,40 +32,35 @@ function get_id(img_id){
 
 
 function clean_image_info(){
+    //return;
     var img_id = get_id(this.id);
 
     if(this.id.substring(0,5) == 'sitem'){
-        var title_id = "stitle"+img_id.toString();
-        document.getElementById("sitem"+img_id.toString()).setAttribute('style','filter:brightness(100%);');
-        document.getElementById(title_id).setAttribute('style','opacity:0;color:white;filter:brightness(100%);');
-        document.getElementById("sd_button_div"+img_id.toString()).setAttribute('style','opacity:0;');
-        document.getElementById("syear"+img_id.toString()).setAttribute('style','opacity:0;');
+        document.getElementById("sinfo"+img_id).setAttribute('style','opacity:1;');
+        document.getElementById("sd_button_div"+img_id).setAttribute('style','opacity:1;');
         return;
     }
     var title_id = "title"+img_id.toString();
-    document.getElementById("item"+img_id.toString()).setAttribute('style','filter:brightness(100%);');
-    document.getElementById(title_id).setAttribute('style','opacity:0;color:white;filter:brightness(100%);');
-    document.getElementById("d_button_div"+img_id.toString()).setAttribute('style','opacity:0;');
-    document.getElementById("year"+img_id.toString()).setAttribute('style','opacity:0;');
+    document.getElementById("img"+img_id).setAttribute('style','filter:brightness(100%)');
+    document.getElementById("info"+img_id).setAttribute('style','opacity:0;');
+    document.getElementById("d_button_div"+img_id).setAttribute('style','opacity:0;');
 }
 
 
 function show_image_info(){
+    console.log(this.id);
+    //return;
     var img_id = get_id(this.id);
-    //console.log(this.id + '   ' + this.target);
     if(this.id.substring(0,5) == 'sitem'){
-        var title_id = "stitle"+img_id.toString();
-        document.getElementById(title_id).setAttribute('style','opacity:1;color:white;filter:brightness(100%);');
-        document.getElementById("sitem"+img_id.toString()).setAttribute('style','filter:brightness(50%);');
-        document.getElementById("syear"+img_id.toString()).setAttribute('style','opacity:1;color:yellow;margin-top: 10px;');
-        document.getElementById("sd_button_div"+img_id.toString()).setAttribute('style','opacity:1;');
+        //document.getElementById("simg"+img_id).setAttribute('style','filter:brightness(20%)');
+        document.getElementById("sinfo"+img_id).setAttribute('style','opacity:1;');
+        //document.getElementById("sd_button_div"+img_id).setAttribute('style','opacity:1;');
         return;
     }
-    var title_id = "title"+img_id.toString();
-    document.getElementById(title_id).setAttribute('style','opacity:1;color:white;filter:brightness(100%);');
-    document.getElementById("item"+img_id.toString()).setAttribute('style','filter:brightness(50%);');
-    document.getElementById("year"+img_id.toString()).setAttribute('style','opacity:1;color:yellow;margin-top: 10px;');
-    document.getElementById("d_button_div"+img_id.toString()).setAttribute('style','opacity:1;');
+    //var title_id = "title"+img_id.toString();
+    document.getElementById("img"+img_id).setAttribute('style','filter:brightness(20%)');
+    document.getElementById("info"+img_id).setAttribute('style','opacity:1;');
+    document.getElementById("d_button_div"+img_id).setAttribute('style','opacity:1;');
 }
 
 function image_clicked(event){
@@ -93,12 +88,11 @@ function init_first_carousel(){
         item_div.className = "item";
         item_div.id = "item" + i.toString();
 
-        var img_div = document.createElement("div");
+        var img_div = document.createElement("img");
         img_div.className = "img_tile";
         img_div.id = "img"+i.toString();
 
-        item_div.onclick = image_clicked;
-
+        //item_div.onclick = image_clicked;
         item_div.onmouseover = show_image_info;
         item_div.onmouseout = clean_image_info;
 
@@ -115,12 +109,18 @@ function init_first_carousel(){
 
             var item_element = document.getElementById("item"+received_item.toString());
             var img_element = document.getElementById("img"+received_item.toString());
-            img_element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
+
+
+            img_element.setAttribute('src',object['Poster']);
+
+            var info_div = document.createElement("div");
+            info_div.id = "info"+received_item.toString();
 
             var film_title = document.createElement("label");
             film_title.className = "col-xs-12";
             film_title.id = "title"+received_item.toString();
             film_title.innerHTML = object['Title'];
+            film_title.setAttribute('style','margin-top:20%');
 
             var br = document.createElement("br");
 
@@ -131,7 +131,7 @@ function init_first_carousel(){
 
 
             var download_buttons_div = document.createElement("div");
-            download_buttons_div.className= "row d_button_div";
+            download_buttons_div.className= "d_button_div";
             download_buttons_div.id= "d_button_div"+received_item.toString();
 
 
@@ -139,7 +139,6 @@ function init_first_carousel(){
                 var d_button = document.createElement("button");
                 if(i == 0){
                     d_button.className = "btn btn-default glyphicon glyphicon-download-alt  ";
-                    //d_button.setAttribute('style','ma')
                     d_button.setAttribute('style','margin-left:3px')
                 }
                 if(i == 1){
@@ -152,9 +151,10 @@ function init_first_carousel(){
                 download_buttons_div.appendChild(d_button);
             }
 
-            img_element.appendChild(film_title);
-            img_element.appendChild(film_year);
-            img_element.appendChild(download_buttons_div);
+            info_div.appendChild(film_title);
+            info_div.appendChild(film_year);
+            info_div.appendChild(download_buttons_div);
+            item_element.appendChild(info_div);
             json_array[received_item] = object;
             img_element.id = "img"+received_item.toString();
 
@@ -168,39 +168,19 @@ function init_second_carousel(){
     var carousel_div = document.getElementById("second_owl_demo");
 
     for (var i = 0 ; i < hottest_films.length ; i++){
+
         var item_div = document.createElement("div");
         item_div.className = "sitem";
         item_div.id = "sitem" + i.toString();
 
-
-        var br = document.createElement("br");
-
-        var img_div = document.createElement("div");
-        img_div.className = "img_tile";
+        var img_div = document.createElement("img");
         img_div.id = "simg"+i.toString();
 
-
-        var movie_genres = document.createElement("article");
-        movie_genres.className = "movies_genres";
-        movie_genres.id = "movies_genres" + i.toString();
-
-
-
-        var movie_quality = document.createElement("article");
-        movie_quality.className = "movies_genres";
-        movie_quality.id = "movies_quality" + i.toString();
-
-        item_div.onclick = image_clicked;
         item_div.onmouseover = show_image_info;
         item_div.onmouseout = clean_image_info;
 
-        item_div.appendChild(br);
+
         item_div.appendChild(img_div);
-        //item_div.appendChild(br);
-        //item_div.appendChild(br);
-        item_div.appendChild(movie_genres);
-        item_div.appendChild(movie_quality);
-        //item_div.appendChild(br);
 
         carousel_div.appendChild(item_div);
     }
@@ -208,6 +188,7 @@ function init_second_carousel(){
 
     var received_item = 0;
 
+    //return;
     for (var i = 0 ; i < hottest_films.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + hottest_films[i] + "&apikey=" + api_key;
         console.log(url);
@@ -215,15 +196,18 @@ function init_second_carousel(){
 
             var item_element = document.getElementById("sitem"+received_item.toString());
 
-            var element = document.getElementById("simg"+received_item.toString());
-            element.setAttribute('style','background-image:url('+object['Poster']+')'+';');
+            var img = document.getElementById("simg"+received_item.toString());
+            img.setAttribute('src',object['Poster']);
+            img.setAttribute('style','position: absolute;left:15%;width: 70%;top:5%;height: 60%;');
 
-            var genres_div = document.getElementById("movies_genres"+received_item.toString());
+            var genres_div = document.createElement("div");
+            genres_div.id = "movies_genres"+received_item.toString();
+            genres_div.className="movies_genres";
 
             var genres = object['Genre'].split(',');
             var num_genres = genres.length;
-            var width = (95/num_genres).toString()+'%';
 
+            var width = (96/num_genres).toString()+'%';
             for (var i = 0 ; i < genres.length ; i++){
                 var genre_button = document.createElement("label");
 
@@ -232,10 +216,10 @@ function init_second_carousel(){
 
                 if(i>0){
                     if(num_genres==2 || num_genres==1){
-                        genre_button.setAttribute('style','padding:0px 0px;margin-left:2px;font-size:10px;width:'+width.toString());
+                        genre_button.setAttribute('style','padding:0px 0px;margin-right:2px;font-size:10px;width:'+width.toString());
                     }
                     else{
-                        genre_button.setAttribute('style','font-size:7px;margin-left:2px;width:'+width.toString());
+                        genre_button.setAttribute('style','font-size:7px;margin-right:2px;width:'+width.toString());
                     }
                 }
                 else{
@@ -250,27 +234,35 @@ function init_second_carousel(){
                 genres_div.appendChild(genre_button);
             }
 
-
-
-            var movie_quality = document.getElementById("movies_quality"+received_item.toString());
+            var movie_quality = document.createElement("div");
+            movie_quality.id = "movies_quality"+received_item.toString();
+            movie_quality.className = "movies_quality";
 
             var quality = document.createElement("label");
             quality.innerHTML = "BlueRay";
             //quality.className = "col-lg-6"
             movie_quality.appendChild(quality);
-            quality.setAttribute('style','width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
+            quality.setAttribute('style','margin-left:3%');
+            //quality.setAttribute('style','width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
             //quality.setAttribute('style','font-size:7px;width:50%');
 
             var rate = document.createElement("label");
             rate.innerHTML = object['imdbRating'];
             movie_quality.appendChild(rate);
+            //movie_quality.
             //rate.className = "col-lg-6";
-            rate.setAttribute('style','margin-left:4px;width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
+            //rate.setAttribute('style','margin-left:4px;width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
             //rate.setAttribute('style','font-size:7px;width:'+width.toString());
+            item_element.appendChild(genres_div);
+            item_element.appendChild(movie_quality);
+
+            var movie_info = document.createElement("div");
+            movie_info.id = "sinfo"+received_item.toString();
+            movie_info.className="col-lg-12";
+            movie_info.setAttribute('style','opacity: 1;top:20%')
 
 
             var film_title = document.createElement("label");
-            film_title.className = "col-xs-12";
             film_title.id = "stitle"+received_item.toString();
             film_title.innerHTML = object['Title'];
 
@@ -278,7 +270,6 @@ function init_second_carousel(){
             film_year.className = "col-xs-12 year";
             film_year.id = "syear"+received_item.toString();
             film_year.innerHTML = object['Year'];
-
 
             var download_buttons_div = document.createElement("div");
             download_buttons_div.className= "row d_button_div";
@@ -299,12 +290,15 @@ function init_second_carousel(){
                 }
                 download_buttons_div.appendChild(d_button);
             }
-            element.appendChild(film_title);
-            element.appendChild(film_year);
-            element.appendChild(download_buttons_div);
-            hottest_json_array[received_item] = object;
-            element.id = "simg"+received_item.toString();
 
+            movie_info.appendChild(film_title);
+            movie_info.appendChild(film_year);
+            movie_info.appendChild(download_buttons_div);
+
+
+            item_element.appendChild(movie_info);
+
+            hottest_json_array[received_item] = object;
             received_item++;
         });
     }
@@ -321,6 +315,7 @@ function on_logoutclicked(){
 
 $(document).ready(function(){
 
+    //return;
     $.get("../php/auth.php").done(function (object){
         if(object == "true"){
             document.getElementById("user_image").setAttribute('style','visibility:visible');
@@ -379,14 +374,18 @@ $(document).ready(function(){
         responsiveClass:true,
 
         // "singleItem:true" is a shortcut for:
-        items : hottest_films.length,
+        items : (hottest_films.length+1),
         responsive:{
             0:{
+                items:1,
+                nav:false
+            },
+            500:{
                 items:2,
                 nav:false
             },
             600:{
-                items:3,
+                items:2,
                 nav:false
             },
             800:{
@@ -394,7 +393,7 @@ $(document).ready(function(){
                 nav:true,
             },
             1200:{
-                items:6,
+                items:5,
                 nav:true,
                 loop:false
             }
