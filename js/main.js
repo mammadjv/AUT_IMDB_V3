@@ -36,8 +36,9 @@ function clean_image_info(){
     var img_id = get_id(this.id);
 
     if(this.id.substring(0,5) == 'sitem'){
-        document.getElementById("sinfo"+img_id).setAttribute('style','opacity:1;');
-        document.getElementById("sd_button_div"+img_id).setAttribute('style','opacity:1;');
+        document.getElementById("sback_div"+img_id).setAttribute('style','filter:brightness(100%)');
+        document.getElementById("smovie_info"+img_id).setAttribute('style','opacity:0;');
+        document.getElementById("sd_button_div"+img_id).setAttribute('style','opacity:0;');
         return;
     }
     var title_id = "title"+img_id.toString();
@@ -52,9 +53,9 @@ function show_image_info(){
     //return;
     var img_id = get_id(this.id);
     if(this.id.substring(0,5) == 'sitem'){
-        //document.getElementById("simg"+img_id).setAttribute('style','filter:brightness(20%)');
-        document.getElementById("sinfo"+img_id).setAttribute('style','opacity:1;');
-        //document.getElementById("sd_button_div"+img_id).setAttribute('style','opacity:1;');
+        document.getElementById("sback_div"+img_id).setAttribute('style','filter:brightness(20%)');
+        document.getElementById("smovie_info"+img_id).setAttribute('style','opacity:1;');
+        document.getElementById("sd_button_div"+img_id).setAttribute('style','opacity:1;');
         return;
     }
     //var title_id = "title"+img_id.toString();
@@ -82,6 +83,7 @@ function image_clicked(event){
 }
 
 function init_first_carousel(){
+    //return;
     var carousel_div = document.getElementById("owl-demo");
     for (var i = 0 ; i < film_ids.length ; i++){
         var item_div = document.createElement("div");
@@ -102,7 +104,7 @@ function init_first_carousel(){
     }
 
     var received_item = 0;
-
+//return;
     for (var i = 0 ; i < film_ids.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + film_ids[i] + "&apikey=" + api_key;
         $.get(url).done(function (object){
@@ -138,7 +140,7 @@ function init_first_carousel(){
             for (var  i = 0 ; i < 3 ; i++){
                 var d_button = document.createElement("button");
                 if(i == 0){
-                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt  ";
+                    d_button.className = "btn btn-default glyphicon glyphicon-download-alt";
                     d_button.setAttribute('style','margin-left:3px')
                 }
                 if(i == 1){
@@ -164,41 +166,49 @@ function init_first_carousel(){
 }
 
 function init_second_carousel(){
-
-    var carousel_div = document.getElementById("second_owl_demo");
+    //return;
+    var s_carousel_div = document.getElementById("second_owl_demo");
 
     for (var i = 0 ; i < hottest_films.length ; i++){
 
         var item_div = document.createElement("div");
         item_div.className = "sitem";
         item_div.id = "sitem" + i.toString();
+        //
+        var back_div = document.createElement("div");
+        back_div.className = "back_div";
+        back_div.id = "sback_div" + i.toString();
 
-        var img_div = document.createElement("img");
-        img_div.id = "simg"+i.toString();
+        var movie_info_div = document.createElement("div");
+        movie_info_div.className = "row movie_info";
+        movie_info_div.id = "smovie_info"+i.toString();
+
+        item_div.appendChild(back_div);
+        item_div.appendChild(movie_info_div);
 
         item_div.onmouseover = show_image_info;
-        item_div.onmouseout = clean_image_info;
+        item_div.onmouseout= clean_image_info;
 
 
-        item_div.appendChild(img_div);
-
-        carousel_div.appendChild(item_div);
+        s_carousel_div.appendChild(item_div);
     }
 
-
     var received_item = 0;
-
     //return;
     for (var i = 0 ; i < hottest_films.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + hottest_films[i] + "&apikey=" + api_key;
         console.log(url);
         $.get(url).done(function (object){
 
-            var item_element = document.getElementById("sitem"+received_item.toString());
+            var sitem_element = document.getElementById("sitem"+received_item.toString());
+            var sback_div = document.getElementById("sback_div"+received_item.toString());
+            var movie_info_div = document.getElementById("smovie_info"+received_item.toString());
 
-            var img = document.getElementById("simg"+received_item.toString());
-            img.setAttribute('src',object['Poster']);
-            img.setAttribute('style','position: absolute;left:15%;width: 70%;top:5%;height: 60%;');
+            var simg = document.createElement("input");
+            simg.setAttribute('type','image');
+            simg.setAttribute('src',object['Poster']);
+
+            sback_div.appendChild(simg);
 
             var genres_div = document.createElement("div");
             genres_div.id = "movies_genres"+received_item.toString();
@@ -216,7 +226,7 @@ function init_second_carousel(){
 
                 if(i>0){
                     if(num_genres==2 || num_genres==1){
-                        genre_button.setAttribute('style','padding:0px 0px;margin-right:2px;font-size:10px;width:'+width.toString());
+                        genre_button.setAttribute('style','margin-right:2px;font-size:10px;width:'+width.toString());
                     }
                     else{
                         genre_button.setAttribute('style','font-size:7px;margin-right:2px;width:'+width.toString());
@@ -224,7 +234,7 @@ function init_second_carousel(){
                 }
                 else{
                     if(num_genres == 2 || num_genres==1){
-                        genre_button.setAttribute('style','padding:0px 0px;font-size:10px;width:'+width.toString());
+                        genre_button.setAttribute('style','font-size:10px;width:'+width.toString());
                     }
                     else{
                         genre_button.setAttribute('style','font-size:7px;width:'+width.toString());
@@ -234,45 +244,40 @@ function init_second_carousel(){
                 genres_div.appendChild(genre_button);
             }
 
+            sback_div.appendChild(genres_div);
+
             var movie_quality = document.createElement("div");
             movie_quality.id = "movies_quality"+received_item.toString();
             movie_quality.className = "movies_quality";
 
             var quality = document.createElement("label");
             quality.innerHTML = "BlueRay";
-            //quality.className = "col-lg-6"
-            movie_quality.appendChild(quality);
-            quality.setAttribute('style','margin-left:3%');
-            //quality.setAttribute('style','width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
-            //quality.setAttribute('style','font-size:7px;width:50%');
 
             var rate = document.createElement("label");
             rate.innerHTML = object['imdbRating'];
+
             movie_quality.appendChild(rate);
-            //movie_quality.
-            //rate.className = "col-lg-6";
-            //rate.setAttribute('style','margin-left:4px;width:48%;padding:0px 0px;font-size:small;background-color:transparent;color:black;');
-            //rate.setAttribute('style','font-size:7px;width:'+width.toString());
-            item_element.appendChild(genres_div);
-            item_element.appendChild(movie_quality);
+            movie_quality.appendChild(quality);
 
-            var movie_info = document.createElement("div");
-            movie_info.id = "sinfo"+received_item.toString();
-            movie_info.className="col-lg-12";
-            movie_info.setAttribute('style','opacity: 1;top:20%')
+            sback_div.appendChild(movie_quality);
 
-
-            var film_title = document.createElement("label");
+            var film_title = document.createElement("div");
             film_title.id = "stitle"+received_item.toString();
+            film_title.className = "col-lg-12";
             film_title.innerHTML = object['Title'];
 
-            var film_year = document.createElement("label");
+            movie_info_div.appendChild(film_title);
+
+            var film_year = document.createElement("div");
             film_year.className = "col-xs-12 year";
             film_year.id = "syear"+received_item.toString();
             film_year.innerHTML = object['Year'];
 
+            movie_info_div.appendChild(film_year);
+
+
             var download_buttons_div = document.createElement("div");
-            download_buttons_div.className= "row d_button_div";
+            download_buttons_div.className= "col-lg-12 d_button_div";
             download_buttons_div.id= "sd_button_div"+received_item.toString();
 
             for (var  i = 0 ; i < 3 ; i++){
@@ -291,12 +296,10 @@ function init_second_carousel(){
                 download_buttons_div.appendChild(d_button);
             }
 
-            movie_info.appendChild(film_title);
-            movie_info.appendChild(film_year);
-            movie_info.appendChild(download_buttons_div);
+            movie_info_div.appendChild(download_buttons_div);
 
-
-            item_element.appendChild(movie_info);
+            sitem_element.appendChild(sback_div);
+            sitem_element.appendChild(movie_info_div);
 
             hottest_json_array[received_item] = object;
             received_item++;
@@ -376,19 +379,19 @@ $(document).ready(function(){
         // "singleItem:true" is a shortcut for:
         items : (hottest_films.length+1),
         responsive:{
-            0:{
+            200:{
                 items:1,
                 nav:false
             },
-            500:{
+            400:{
                 items:2,
                 nav:false
             },
-            600:{
-                items:2,
+            700:{
+                items:3,
                 nav:false
             },
-            800:{
+            900:{
                 items:4,
                 nav:true,
             },

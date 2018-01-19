@@ -1,7 +1,12 @@
 *{
     text-decoration: none;
+    font-family:"Arabic Typesetting", serif;
 }
 
+
+/*@font-face {*/
+    /*font-family: 'Samim', sans-serif;*/
+/*}*/
 
 #owl-demo {
     display: block;
@@ -20,6 +25,7 @@
 }
 
 #second_owl_demo{
+    /*position: relative;*/
     display: block;
     /*position: relative;*/
     margin-top: 20px;
@@ -119,6 +125,7 @@
     /*width: 50%;*/
     /*background: transparent;*/
     /*color:yellow;*/
+    margin-left: 2%;
     width: 45%;
     height: 30px;
     border:solid;
@@ -164,7 +171,7 @@
     /*white-space: nowrap;*/
     /*font-size: 6px;*/
     height: 25px;
-    padding-top: 5px;
+    /*padding-top: 0px;*/
     /*padding-top: 2px;*/
     /*padding: 4px 4px;*/
     /*padding-left: 4px;*/
@@ -180,25 +187,12 @@
 }
 
 
-.sitem article{
-    /*margin-top: 20px;*/
-    width: 50%;
-    /*margin-right: 15%;*/
-    z-index: 1;
-}
-
-
-.sitem div{
-    /*top: 20px;*/
-    /*height: 230px;*/
-    /*color: red;*/
-    /*background-size: 100% 100%;*/
-    /*background-repeat:no-repeat;*/
-    /*background-position:center;*/
-    /*width: 90%;*/
-    /*margin-right: 5%;*/
+/*.sitem article{*/
+    /*/!*margin-top: 20px;*!/*/
+    /*width: 50%;*/
+    /*/!*margin-right: 15%;*!/*/
     /*z-index: 1;*/
-}
+/*}*/
 
 
 .jumbotron.hero-nature{
@@ -321,6 +315,27 @@
     color: white;
 }
 
+.sitem input{
+    position: absolute;
+    left:18%;
+    width: 64%;
+    top:5%;
+    height: 60%;
+    background-color: red;
+}
+
+input:focus{
+    outline:none;
+}
+
+.back_div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #707070 0%,#707070 50%,#ffb10b 50%,#ffb10b 100%);
+    /*filter:brightness(0.4);*/
+}
+
 .sitem{
     color: #FFF;
     -webkit-border-radius: 3px;
@@ -343,7 +358,14 @@
     z-index: 0;
     font-family: Arial;
     color: white;
-    background: linear-gradient(to bottom, #707070 0%,#707070 50%,#ffb10b 50%,#ffb10b 100%); /* W3C */
+
+}
+
+.movie_info{
+    position: relative;
+    top: 70px;
+    align-content: center;
+    opacity: 0;
 }
 
 .item_image{
@@ -484,6 +506,17 @@ div::-webkit-scrollbar{
     position: absolute;
     top: 1%;
     background-color: red;
+}
+
+.banner{
+    position: relative;
+    top:0px;
+    /*left: 0%;*/
+    width: 90%;
+    height: 100%;
+
+    background-image: url("http://iranfilm.co/wp-content/uploads/2018/01/GeostromSlideR-min.png");
+    /*height: 20%;*/
 }
 
 .search_icon{
