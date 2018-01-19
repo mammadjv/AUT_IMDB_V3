@@ -94,7 +94,7 @@ function init_first_carousel(){
         img_div.className = "img_tile";
         img_div.id = "img"+i.toString();
 
-        //item_div.onclick = image_clicked;
+        item_div.onclick = image_clicked;
         item_div.onmouseover = show_image_info;
         item_div.onmouseout = clean_image_info;
 
@@ -186,6 +186,7 @@ function init_second_carousel(){
         item_div.appendChild(back_div);
         item_div.appendChild(movie_info_div);
 
+        item_div.onclick = image_clicked;
         item_div.onmouseover = show_image_info;
         item_div.onmouseout= clean_image_info;
 
