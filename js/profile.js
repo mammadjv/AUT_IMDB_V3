@@ -36,6 +36,8 @@ function save_whole_user_info(){
 
     $.get(post_url,function(value){
         alert("اطلاعات شما ثبت گردید");
+        var destination_url = "../src/main.html";
+        window.location = destination_url;
     });
 }
 

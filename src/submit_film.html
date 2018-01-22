@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin pannel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="fa" />
+    <link rel="stylesheet" href="../assets/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div style="margin-left: 100px;margin-top: 20px;width: 80%">
+        <!--enctype="multipart/form-data"-->
+        <form class="form-group" action="../php/add_new_film.php" method="post" enctype="multipart/form-data">
+            <label for="Title">نام فیلم</label>
+            <br>
+            <input type="text" class="form-control" id="Title" name="Title">
+            <br>
+            <label for="Rated">رتبه فیلم</label>
+            <br>
+            <input type="number" class="form-control" id="Rated" name="Rated">
+            <br>
+            <label for="Year">سال تولید</label>
+            <br>
+            <input type="datetime" class="form-control" id="Year" name="Year">
+            <br>
+            <label for="Runtime">زمان فیلم</label>
+            <br>
+            <input type="number" class="form-control" id="Runtime" name="Runtime">
+            <br>
+            <label for="Country">کشور</label>
+            <br>
+            <input type="text" class="form-control" id="Country" name="Country">
+            <br>
+            <label for="Language">زبان فیلم</label>
+            <br>
+            <input type="text" class="form-control" id="Language" name="Language">
+            <br>
+            <label for="Plot">توضیحات فیلم</label>
+            <br>
+            <input type="text" class="form-control" id="Plot" name="Plot">
+            <br>
+            <label for="Director">کارگردان</label>
+            <br>
+            <input type="text" class="form-control" id="Director" name="Director">
+            <br>
+            <label for="Writer">نویسندگان</label>
+            <br>
+            <input type="text" class="form-control" id="Writer" name="Writer">
+            <br>
+            <label for="imdbVotes">تعداد آرا</label>
+            <br>
+            <input type="number" class="form-control" id="imdbVotes" name="imdbVotes">
+            <br>
+            <label for="Genre">سبکهای فیلم</label>
+            <br>
+            <input type="text" class="form-control" id="Genre" name="Genre">
+            <br>
+            <input type="file"  id="Poster" name="Poster">
+            <br>
+            <button  type="submit" class="btn-success">به روز رسانی</button>
+            <br>
+            <br>
+            <br>
+            <br>
+        </form>
+    </div>
+    <script src="../js/jquery_library2.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

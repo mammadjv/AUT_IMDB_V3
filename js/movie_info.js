@@ -6,48 +6,75 @@ var movie_id;
 var author;
 
 function on_enter() {
-    var key = window.event.keyCode;
+    //var key = window.event.keyCode;
     // If the user has pressed enter
-    if (key === 13) {
-        document.getElementById("comment_text").value = document.getElementById("comment_text").value + "\n";
-        return false;
-    }
-    else {
-        return true;
-    }
+    //if (key === 13) {
+    //    document.getElementById("comment_text").value = document.getElementById("comment_text").value + "\n";
+    //    return false;
+    //}
+    //else {
+    //    return true;
+    //}
 }
 
 
 function save_comment(){
     var comment_text = document.getElementById("comment_text").value;
+    var comment = comment_text;
+    //for(var i = 0; i < comment_text.length;i++){
+    //    comment += comment_text[i]+"\r\n";
+    //}
+
     var prod_rate = document.getElementById("prod_range").value;
     var cast_rate =document.getElementById("cast_range").value;
     var screen_play_rate =document.getElementById("screen_play_range").value;
 
     var currentdate = new Date();
-    var datetime = currentdate.getDate() + "/"
-        + (currentdate.getMonth()+1)  + "/"
-        + currentdate.getFullYear() + "  "
+    var datetime = currentdate.getFullYear() + "-"
+        + (currentdate.getMonth()+1)  + "-"
+        + currentdate.getDay() + "  "
         + currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"
         + currentdate.getSeconds();
     author = "mohsen hosseini";
 
-    var obj = '{'
-        +'"comment_text" : "' + comment_text.toString() + '",'
-        +'"movie_id" : "' + movie_id.toString() + '",'
-        +'"prod_rate" : "' + prod_rate.toString() + '",'
-        +'"cast_rate" : "' + cast_rate.toString() + '",'
-        +'"screen_play_rate" : "' + screen_play_rate.toString() + '",'
-        +'"date_time" : "' + datetime.toString() + '",'
-        +'"author" : "' + author + '"'
-        +'}';
 
-    console.log(obj);
-    var post_url = "../php/main.php?q="+obj;
-    $.get(post_url,function(value){
-        console.log(value);
-    });
+    var obj = {};
+    obj['comment_text'] = comment;
+    obj['movie_id'] = movie_id.toString();
+    obj['prod_rate'] = prod_rate.toString();
+    obj['cast_rate'] = cast_rate.toString();
+    obj['screen_play_rate'] = screen_play_rate.toString();
+    obj['date_time'] = datetime.toString();
+    obj['author'] = author.toString();
+    //console.log(obj);
+
+    //var obj = '{'
+    //    +'comment_text : ' + comment+ '",'
+    //    +'movie_id" : ' + movie_id.toString() + '",'
+    //    +'prod_rate" : ' + prod_rate.toString() + '",'
+    //    +'cast_rate" : ' + cast_rate.toString() + '",'
+    //    +'screen_play_rate" : ' + screen_play_rate.toString() + '",'
+    //    +'date_time" : ' + datetime.toString() + '",'
+    //    +'author" : ' + author + '"'
+    //    +'}';
+
+    //console.log(obj);
+    //return;
+    //var post_url = "../php/save_comment.php?q="+obj;
+    //$.post( post_url, function(value) {
+    //    console.log(value);
+    //});
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../php/save_comment.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+    console.log(JSON.stringify(obj));
+    xhttp.send(JSON.stringify(obj));
 }
 
 function get_value(page_data, k) {
@@ -127,7 +154,6 @@ function set_elements_attributes(json){
         director_tag.append(label);
     }
 
-
     var writers= json['Writer'].split(',');
     var writers_tag = document.getElementById('writer');
     writers_tag.innerHTML = 'نویسندگان : ';
@@ -152,17 +178,25 @@ function set_elements_attributes(json){
         label.innerHTML = actors[i] + '&nbsp&nbsp';
         actors_tag.append(label);
     }
+
+    get_comments();
+
 }
 
-
+function get_comments(){
+    console.log(movie_id.toString());
+    var url = "../php/get_comments.php/?q="+movie_id.toString();
+    $.get(url,function(value){
+        var obj = JSON.parse(value);
+        var selected_comment = obj[10];
+        console.log(selected_comment['comment']);
+    });
+}
 function set_inner(){
     document.getElementById("comment_tab").innerHTML = this.innerHTML;
 }
 
-
-
 jQuery(document).ready(function($){
-
 
     $('#ex1').slider({
         formatter: function(value) {
@@ -174,7 +208,7 @@ jQuery(document).ready(function($){
     //console.log("salam");
 
     passed_value = passed_value.substring(1,passed_value.length);
-    values = passed_value.split("&");
+    var values = passed_value.split("&");
     movie_id = values[0].split("=")[1];
     var key = values[1].split("=")[1];
 
