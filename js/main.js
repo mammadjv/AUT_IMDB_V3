@@ -108,7 +108,7 @@ function init_first_carousel(){
     for (var i = 0 ; i < film_ids.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + film_ids[i] + "&apikey=" + api_key;
         $.get(url).done(function (object){
-
+            console.log(object);
             var item_element = document.getElementById("item"+received_item.toString());
             var img_element = document.getElementById("img"+received_item.toString());
 
@@ -198,7 +198,7 @@ function init_second_carousel(){
     //return;
     for (var i = 0 ; i < hottest_films.length ; i++) {
         var url = "http://www.omdbapi.com/?i=" + hottest_films[i] + "&apikey=" + api_key;
-        console.log(url);
+        //console.log(url);
         $.get(url).done(function (object){
 
             var sitem_element = document.getElementById("sitem"+received_item.toString());

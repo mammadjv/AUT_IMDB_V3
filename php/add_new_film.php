@@ -12,10 +12,10 @@
 
         $date = date('Y/m/d H:i:s');
 
-        $query = "insert into movies(Title, created_at, Rated, Year, Runtime, Country, Language, Plot, Director, Writer, imdbVotes, Genre)
+        $query = "insert into movies(Title, created_at, Rated, Year, Runtime, Country, Language, Plot, Director, Writer,Actors ,imdbVotes, Genre)
                  VALUES ( \"".$_POST["Title"]."\", \"".$date."\", \"".$_POST["Rated"]."\", \"".$_POST["Year"]."\", \"".$_POST["Runtime"]."\", \"".$_POST["Country"].
             "\", \"".$_POST["Language"]."\", \"".$_POST["Plot"]."\", \"".$_POST["Director"]."\", \"".$_POST["Writer"]."\", \"".
-            $_POST["imdbVotes"]."\", \"".$_POST["Genre"]."\");";
+            $_POST["Actors"]."\", \"".$_POST["imdbVotes"]."\", \"".$_POST["Genre"]."\");";
         echo $query."\n";
 
         $sqlconnection = new mysqli("localhost","root","root","mysql");
@@ -27,8 +27,8 @@
         $data= $result->fetch_assoc();
         echo $data["total"];
 
-        if(move_uploaded_file($_FILES["Poster"]["tmp_name"],"../upload/".$data["total"].".jpg")){
-            echo "Stored in: " . "../upload/".$data["total"].".jpg";
+        if(move_uploaded_file($_FILES["Poster"]["tmp_name"],"../upload/".($data["total"]+1).".jpg")){
+            echo "Stored in: " . "../upload/".($data["total"]+1).".jpg";
         }
 
 //        create table comments(id int NOT NULL AUTO_INCREMENT,movie_id varchar(50), created_at datetime, author varchar(255), comment text,producer_rate int, actors_rate int, screen_play_rage int, PRIMARY KEY(id))
