@@ -27,14 +27,9 @@
         $data= $result->fetch_assoc();
         echo $data["total"];
 
-        if(move_uploaded_file($_FILES["Poster"]["tmp_name"],"../upload/".($data["total"]+1).".jpg")){
-            echo "Stored in: " . "../upload/".($data["total"]+1).".jpg";
+        if(move_uploaded_file($_FILES["Poster"]["tmp_name"],"../poster/".($data["total"]).".jpg")){
+            echo "Stored in: " . "../poster/".($data["total"]).".jpg";
         }
-
-//        create table comments(id int NOT NULL AUTO_INCREMENT,movie_id varchar(50), created_at datetime, author varchar(255), comment text,producer_rate int, actors_rate int, screen_play_rage int, PRIMARY KEY(id))
-//        create table comments(id int NOT NULL AUTO_INCREMENT,Title varchar(50), created_at datetime, Rated varchar(50), Year varchar(50),Runtime varchar(50),Country varchar(50), Language varchar(50), Plot varchar(50), Director varchar(50), Writer varchar(50), imdbVotes varchar(50), Genre varchar(50),PRIMARY KEY(id))
-
     }
-
 ?>
 

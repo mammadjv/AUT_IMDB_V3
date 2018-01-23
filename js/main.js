@@ -2,21 +2,64 @@
  * Created by mohammad on 11/29/17.
  */
 
+function range(start, end, step) {
+    var range = [];
+    var typeofStart = typeof start;
+    var typeofEnd = typeof end;
+
+    if (step === 0) {
+        throw TypeError("Step cannot be zero.");
+    }
+
+    if (typeofStart == "undefined" || typeofEnd == "undefined") {
+        throw TypeError("Must pass start and end arguments.");
+    } else if (typeofStart != typeofEnd) {
+        throw TypeError("Start and end arguments must be of same type.");
+    }
+
+    typeof step == "undefined" && (step = 1);
+
+    if (end < start) {
+        step = -step;
+    }
+
+    if (typeofStart == "number") {
+
+        while (step > 0 ? end >= start : end <= start) {
+            range.push(start);
+            start += step;
+        }
+
+    } else if (typeofStart == "string") {
+
+        if (start.length != 1 || end.length != 1) {
+            throw TypeError("Only strings with one character are supported.");
+        }
+
+        start = start.charCodeAt(0);
+        end = end.charCodeAt(0);
+
+        while (step > 0 ? end >= start : end <= start) {
+            range.push(String.fromCharCode(start));
+            start += step;
+        }
+
+    } else {
+        throw TypeError("Only string and number types are supported");
+    }
+
+    return range;
+
+}
 
 
-film_ids = ["tt3266284","tt3521126","tt5580390","tt5721088","tt5580036","tt4864624","tt3531176","tt2380307",
-    "tt0974015","tt2543472","tt3402236","tt6359956","tt1485796","tt4209788","tt5711148"];
 
-//hottest_films = ["tt5580394","tt5580396", "tt5580396","tt5580386","tt5580384","tt5580380","tt5580376","tt5580372",
-//    "tt5580370","tt5590380","tt5590386","tt5592372","tt5592376","tt5594384"];
+film_ids = range(2,22,1);
 
 hottest_films = film_ids;
 
 var json_array = [];
 var hottest_json_array=[];
-
-var api_key = "30207f26";
-
 
 json_array.length = film_ids.length;
 hottest_json_array.length = hottest_films.length;
@@ -24,7 +67,7 @@ hottest_json_array.length = hottest_films.length;
 function get_id(img_id){
     var len = img_id.length;
     if(img_id.substring(0,5) == "sitem"){
-        console.log(img_id);
+        //console.log(img_id);
         return img_id.toString().substring(5,len);
     }
     return img_id.toString().substring(4,len);
@@ -49,7 +92,7 @@ function clean_image_info(){
 
 
 function show_image_info(){
-    console.log(this.id);
+    //console.log(this.id);
     //return;
     var img_id = get_id(this.id);
     if(this.id.substring(0,5) == 'sitem'){
@@ -73,12 +116,12 @@ function image_clicked(event){
     var json;
     if(this.id.substring(0,5) == 'sitem'){
         json = hottest_json_array[img_id];
-        console.log(json)
+        //console.log(json)
     }
     else{
         json = json_array[img_id]
     }
-    var destination_url = "../src/movie_info.html"+"?id="+json['imdbID']+"&apikey="+api_key;
+    var destination_url = "../src/movie_info.html"+"?id="+json['id'];
     window.location=destination_url;
 }
 
@@ -104,14 +147,14 @@ function init_first_carousel(){
     }
 
     var received_item = 0;
-//return;
+
     for (var i = 0 ; i < film_ids.length ; i++) {
-        var url = "http://www.omdbapi.com/?i=" + film_ids[i] + "&apikey=" + api_key;
+        var url = "../php/details.php?id="+film_ids[i].toString();
         $.get(url).done(function (object){
-            console.log(object);
+            console.log(object['Poster']);
+            //return;
             var item_element = document.getElementById("item"+received_item.toString());
             var img_element = document.getElementById("img"+received_item.toString());
-
 
             img_element.setAttribute('src',object['Poster']);
 
@@ -197,10 +240,10 @@ function init_second_carousel(){
     var received_item = 0;
     //return;
     for (var i = 0 ; i < hottest_films.length ; i++) {
-        var url = "http://www.omdbapi.com/?i=" + hottest_films[i] + "&apikey=" + api_key;
-        //console.log(url);
+        var url = "../php/details.php?id="+film_ids[i].toString();
         $.get(url).done(function (object){
-
+            //console.log(object);
+            //return;
             var sitem_element = document.getElementById("sitem"+received_item.toString());
             var sback_div = document.getElementById("sback_div"+received_item.toString());
             var movie_info_div = document.getElementById("smovie_info"+received_item.toString());
@@ -255,7 +298,7 @@ function init_second_carousel(){
             quality.innerHTML = "BlueRay";
 
             var rate = document.createElement("label");
-            rate.innerHTML = object['imdbRating'];
+            rate.innerHTML = object['Rated'];
 
             movie_quality.appendChild(rate);
             movie_quality.appendChild(quality);
@@ -319,7 +362,6 @@ function on_logoutclicked(){
 
 $(document).ready(function(){
 
-    //return;
     $.get("../php/auth.php").done(function (object){
         if(object == "true"){
             document.getElementById("user_image").setAttribute('style','visibility:visible');
@@ -330,7 +372,6 @@ $(document).ready(function(){
     });
 
     init_first_carousel();
-    //console.log(json_array.length);
 
     init_second_carousel();
 

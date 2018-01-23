@@ -68,8 +68,8 @@ function save_comment(){
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "../php/save_comment.php", true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+    xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
             console.log(this.responseText);
         }
     };
