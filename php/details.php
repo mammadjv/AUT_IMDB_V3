@@ -17,7 +17,6 @@
         $output["Poster"] = "/page/poster/".$id.".jpg";
         echo json_encode($output);
     }
-
 //    while ($row = $result->fetch_assoc()) {
 //         do something with $row
 //    }
