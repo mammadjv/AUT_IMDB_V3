@@ -11,7 +11,6 @@ function update_author_details(){
     $.get(url).done(function (value){
         if(value != "failure"){
             author = value;
-            get_comments();
         }
     });
 }
@@ -20,13 +19,11 @@ function update_author_details(){
 function save_comment(){
     if(author == ""){
         alert("cant save your comment, please login");
+        return;
     }
 
     var comment_text = document.getElementById("comment_text").value;
     var comment = comment_text;
-    //for(var i = 0; i < comment_text.length;i++){
-    //    comment += comment_text[i]+"\r\n";
-    //}
 
     var prod_rate = document.getElementById("prod_range").value;
     var cast_rate =document.getElementById("cast_range").value;
@@ -48,33 +45,17 @@ function save_comment(){
     obj['screen_play_rate'] = screen_play_rate.toString();
     obj['date_time'] = datetime.toString();
     obj['author'] = author.toString();
-    //console.log(obj);
+    
 
-    //var obj = '{'
-    //    +'comment_text : ' + comment+ '",'
-    //    +'movie_id" : ' + movie_id.toString() + '",'
-    //    +'prod_rate" : ' + prod_rate.toString() + '",'
-    //    +'cast_rate" : ' + cast_rate.toString() + '",'
-    //    +'screen_play_rate" : ' + screen_play_rate.toString() + '",'
-    //    +'date_time" : ' + datetime.toString() + '",'
-    //    +'author" : ' + author + '"'
-    //    +'}';
-
-    //console.log(obj);
-    //return;
-    //var post_url = "../php/save_comment.php?q="+obj;
-    //$.post( post_url, function(value) {
-    //    console.log(value);
-    //});
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "../php/save_comment.php", true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            console.log(this.responseText);
+            alert("دیدگاه شما با موفقیت ثبت گردید.");
+            document.getElementById("comment_text").value = "";
         }
     };
-    //console.log(JSON.stringify(obj));
     xhttp.send(JSON.stringify(obj));
 }
 
@@ -180,6 +161,7 @@ function set_elements_attributes(json){
         actors_tag.append(label);
     }
     update_author_details();
+    get_comments();
 }
 
 function get_comments(){
