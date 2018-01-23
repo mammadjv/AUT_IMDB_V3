@@ -178,9 +178,7 @@ function set_elements_attributes(json){
         label.innerHTML = actors[i] + '&nbsp&nbsp';
         actors_tag.append(label);
     }
-
     get_comments();
-
 }
 
 function get_comments(){

@@ -3,13 +3,10 @@
  */
 
 
-
-
-
-
 film_ids = range(1,22,1);
 
-hottest_films = film_ids;
+var recent_number = 10;
+hottest_films = range(1,recent_number,1);
 
 var json_array = [];
 var hottest_json_array=[];
@@ -142,9 +139,9 @@ function image_clicked(event){
 }
 
 function init_first_carousel(){
-    //return;
+
     var carousel_div = document.getElementById("owl-demo");
-    for (var i = 0 ; i < film_ids.length ; i++){
+    for (var i = 0 ; i < hottest_films.length ; i++){
         var item_div = document.createElement("div");
         item_div.className = "item";
         item_div.id = "item" + i.toString();
@@ -163,12 +160,10 @@ function init_first_carousel(){
     }
 
     var received_item = 0;
-
-    for (var i = 0 ; i < film_ids.length ; i++) {
-        var url = "../php/details.php?id="+film_ids[i].toString();
+    //return;
+    for (var i = 0 ; i < hottest_films.length ; i++) {
+        var url = "../php/details.php?id="+hottest_films[i].toString();
         $.get(url).done(function (object){
-            //console.log(object['Poster']);
-            //return;
             var item_element = document.getElementById("item"+received_item.toString());
             var img_element = document.getElementById("img"+received_item.toString());
 
@@ -211,17 +206,49 @@ function init_first_carousel(){
                 }
                 download_buttons_div.appendChild(d_button);
             }
-
             info_div.appendChild(film_title);
             info_div.appendChild(film_year);
             info_div.appendChild(download_buttons_div);
             item_element.appendChild(info_div);
             json_array[received_item] = object;
             img_element.id = "img"+received_item.toString();
-
             received_item++;
         });
     }
+    $("#owl-demo").owlCarousel({
+        rtl:true,
+        //navigation : true, // Show next and prev buttons
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        // singleItem:true,
+        autoPlay: true,
+        autoPlay: 3000,
+        responsiveClass:true,
+
+        // "singleItem:true" is a shortcut for:
+        items : hottest_films.length,
+        responsive:{
+            0:{
+                items:2,
+                nav:false
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            800:{
+                items:4,
+                nav:true,
+            },
+            1200:{
+                items:6,
+                nav:true,
+                loop:false
+            }
+        }
+    });
+
+
 }
 
 function init_second_carousel(){
@@ -376,6 +403,19 @@ function on_logoutclicked(){
     });
 }
 
+
+function update_recent_films(){
+
+    //console.log(hottest_films);
+    $.get("../php/recent.php?number="+recent_number.toString()).done(function (object){
+        for(var i = 0 ; i < object.length;i++){
+            hottest_films[i] = parseInt(object[i]["id"]);
+        }
+        init_first_carousel();
+    });
+
+}
+
 $(document).ready(function(){
 
     $.get("../php/auth.php").done(function (object){
@@ -387,42 +427,46 @@ $(document).ready(function(){
         }
     });
 
-    init_first_carousel();
 
+    update_recent_films();
+
+    //init_first_carousel();
     init_second_carousel();
 
-    $("#owl-demo").owlCarousel({
-        rtl:true,
-        //navigation : true, // Show next and prev buttons
-        slideSpeed : 300,
-        paginationSpeed : 400,
-        // singleItem:true,
-        autoPlay: true,
-        autoPlay: 3000,
-        responsiveClass:true,
+    //init_first_carousel();
 
-        // "singleItem:true" is a shortcut for:
-        items : 15,
-        responsive:{
-            0:{
-                items:2,
-                nav:false
-            },
-            600:{
-                items:3,
-                nav:false
-            },
-            800:{
-                items:4,
-                nav:true,
-            },
-            1200:{
-                items:6,
-                nav:true,
-                loop:false
-            }
-        }
-    });
+    //$("#owl-demo").owlCarousel({
+    //    rtl:true,
+    //    //navigation : true, // Show next and prev buttons
+    //    slideSpeed : 300,
+    //    paginationSpeed : 400,
+    //    // singleItem:true,
+    //    autoPlay: true,
+    //    autoPlay: 3000,
+    //    responsiveClass:true,
+    //
+    //    // "singleItem:true" is a shortcut for:
+    //    items : hottest_films.length,
+    //    responsive:{
+    //        0:{
+    //            items:2,
+    //            nav:false
+    //        },
+    //        600:{
+    //            items:3,
+    //            nav:false
+    //        },
+    //        800:{
+    //            items:4,
+    //            nav:true,
+    //        },
+    //        1200:{
+    //            items:6,
+    //            nav:true,
+    //            loop:false
+    //        }
+    //    }
+    //});
 
     $("#second_owl_demo").owlCarousel({
         rtl:true,
@@ -435,7 +479,7 @@ $(document).ready(function(){
         responsiveClass:true,
 
         // "singleItem:true" is a shortcut for:
-        items : (hottest_films.length+1),
+        items : film_ids.length,
         responsive:{
             200:{
                 items:1,
