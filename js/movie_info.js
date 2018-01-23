@@ -85,7 +85,7 @@ function getQueryVariable(variable) {
         }
         pure_array.push(variable_array[i]);
     }
-    console.log(pure_array)
+    //console.log(pure_array)
     var i = 0;
     var page_data = new Array();
     while( i < pure_array.length ){
@@ -168,7 +168,7 @@ function get_comments(){
     //console.log(movie_id.toString());
     var url = "../php/get_comments.php?id="+movie_id.toString();
     $.get(url,function(value){
-        console.log(value);
+        console.log("comment received!");
     });
 }
 function set_inner(){

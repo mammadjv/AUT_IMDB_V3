@@ -23,11 +23,20 @@ $author = $json_value['author'];
 //echo $comment_text;
 //return;
 $sqlconnection = new mysqli("localhost","root","root","mysql");
-$query = "insert into comments(movie_id, created_at, author, comment, producer_rate, actors_rate, screen_play_rate)
-VALUES(\"".$movie_id."\", '".$date_time."', \"".$author."\", \"".$comment_text."\", ".$prod_rate.", ".$cast_rate.", ".$screen_play_rate.");";
 
-echo $comment_text;
-$result = $sqlconnection->query($query);
+$query = "insert into comments(movie_id, created_at, author, comment, producer_rate, actors_rate, screen_play_rate) VALUES(?,?,?,?,?,?,?);";
+
+$stmt = $sqlconnection->prepare($query);
+$stmt->bind_param('sssssss', $movie_id,$date_time,$author,$comment_text,$prod_rate,$cast_rate,$screen_play_rate);
+$stmt->execute();
+$result = $stmt->get_result();
+echo $result;
+
+//$query = "insert into comments(movie_id, created_at, author, comment, producer_rate, actors_rate, screen_play_rate)
+//VALUES(\"".$movie_id."\", '".$date_time."', \"".$author."\", \"".$comment_text."\", ".$prod_rate.", ".$cast_rate.", ".$screen_play_rate.");";
+//
+//echo $comment_text;
+//$result = $sqlconnection->query($query);
 //echo $result;
 
 
