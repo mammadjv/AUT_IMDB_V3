@@ -14,6 +14,7 @@
         $_SESSION["email"] = $email;
         $_SESSION["auth"] = "true";
         $_SESSION["id"] = $row["id"];
+        $_SESSION["username"] = $row["name"]." ".$row["family_name"];
         echo "success";
     }
     else {

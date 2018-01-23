@@ -3,22 +3,25 @@
  */
 
 var movie_id;
-var author;
+var author_id;
+var author="";
 
-function on_enter() {
-    //var key = window.event.keyCode;
-    // If the user has pressed enter
-    //if (key === 13) {
-    //    document.getElementById("comment_text").value = document.getElementById("comment_text").value + "\n";
-    //    return false;
-    //}
-    //else {
-    //    return true;
-    //}
+function update_author_details(){
+    var url = "../php/author_user_name.php";
+    $.get(url).done(function (value){
+        if(value != "failure"){
+            author = value;
+            get_comments();
+        }
+    });
 }
 
 
 function save_comment(){
+    if(author == ""){
+        alert("cant save your comment, please login");
+    }
+
     var comment_text = document.getElementById("comment_text").value;
     var comment = comment_text;
     //for(var i = 0; i < comment_text.length;i++){
@@ -36,8 +39,6 @@ function save_comment(){
         + currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"
         + currentdate.getSeconds();
-    author = "mohsen hosseini";
-
 
     var obj = {};
     obj['comment_text'] = comment;
@@ -73,7 +74,7 @@ function save_comment(){
             console.log(this.responseText);
         }
     };
-    console.log(JSON.stringify(obj));
+    //console.log(JSON.stringify(obj));
     xhttp.send(JSON.stringify(obj));
 }
 
@@ -178,11 +179,11 @@ function set_elements_attributes(json){
         label.innerHTML = actors[i] + '&nbsp&nbsp';
         actors_tag.append(label);
     }
-    get_comments();
+    update_author_details();
 }
 
 function get_comments(){
-    console.log(movie_id.toString());
+    //console.log(movie_id.toString());
     var url = "../php/get_comments.php?id="+movie_id.toString();
     $.get(url,function(value){
         console.log(value);
@@ -210,7 +211,7 @@ jQuery(document).ready(function($){
 
     var url = "../php/details.php?id="+movie_id;
     $.get(url).done(function (json){
-        console.log(json);
+        //console.log(json);
         set_elements_attributes(json);
     });
 

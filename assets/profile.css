@@ -1,3 +1,8 @@
+*{
+    text-decoration: none;
+    font-family:"Arabic Typesetting", serif;
+}
+
 button:focus{
     outline: 0 !important;
     border-bottom-color: dodgerblue;
