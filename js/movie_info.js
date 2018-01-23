@@ -185,11 +185,9 @@ function set_elements_attributes(json){
 
 function get_comments(){
     console.log(movie_id.toString());
-    var url = "../php/get_comments.php/?q="+movie_id.toString();
+    var url = "../php/get_comments.php?id="+movie_id.toString();
     $.get(url,function(value){
-        var obj = JSON.parse(value);
-        var selected_comment = obj[10];
-        console.log(selected_comment['comment']);
+        console.log(value);
     });
 }
 function set_inner(){
@@ -210,9 +208,9 @@ jQuery(document).ready(function($){
     passed_value = passed_value.substring(1,passed_value.length);
     var values = passed_value.split("&");
     movie_id = values[0].split("=")[1];
-    var key = values[1].split("=")[1];
+    //var key = values[1].split("=")[1];
 
-    var url = "http://www.omdbapi.com/?i=" + movie_id + "&apikey=" + key;
+    var url = "../php/details.php?id="+movie_id;
     $.get(url).done(function (json){
         console.log(json);
         set_elements_attributes(json);

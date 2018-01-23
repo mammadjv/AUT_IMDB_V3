@@ -41,13 +41,13 @@
                     </button>
                 </a>
                 <button class="dropdown"  id="user_image">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="profile.html"></a>
-                        <img   src="../img/mohammad_javadi.jpg" style="width: 50px;height: 50px;border-radius: 30px">
-                        <div class="dropdown-content">
-                            <a href="profile.html">ویرایش اطلاعات کاربری</a>
-                            <a onclick="on_logoutclicked()">خروج</a>
-                        </div>
-
+                    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="profile.html">-->
+                    <!--</a>-->
+                    <img   src="../img/mohammad_javadi.jpg" style="width: 50px;height: 50px;border-radius: 30px">
+                    <div class="dropdown-content">
+                        <a href="profile.html">ویرایش اطلاعات کاربری</a>
+                        <a onclick="on_logoutclicked()">خروج</a>
+                    </div>
                 </button>
 
 
@@ -105,18 +105,21 @@
             دانلود فیلم،انیمیشن، سریال با ۱۳۶۲۲ عنوان
         </div>
         <div class="col-lg-offset-3 col-lg-7" style="padding-left: 5%;padding-right: 5%">
-            <div class="input-group">
-                <input id="search_input" type="text" class="form-control" placeholder="...جستجوی فیلم، سریال، بازیگر، کارگردان و " style="text-align: right;direction: rtl">
-                <span class="input-group-btn">
-                    <button class="search_icon" style="background-color: green">
-                        <span class="btn btn-default glyphicon glyphicon-search" style="background-color: green;border: none;font-size: 28px;color: white;"></span>
+            <div class="input-group dropdown">
+                <input id="search_input" type="search" class="form-control" placeholder="Search film title, actors and ..." style="text-align: left;">
+                    <span class="input-group-btn">
+                        <button class="search_icon" style="background-color: green">
+                    <span class="btn btn-default glyphicon glyphicon-search" style="background-color: green;border: none;font-size: 28px;color: white;">
+                    </span>
                     </button>
                     <button class="search_icon" style="background-color: purple">
                         <span class="btn btn-default glyphicon glyphicon-zoom-in" style="background-color: purple;border: none;font-size: 28px;color: white"></span>
                     </button>
                 </span>
+
+
             </div>
-            <button class="btn btn-default col-lg-4" style="color:white;background-color: #ffb10b;margin-top: 10px;font-size: x-large;border-radius: 6px;margin-bottom: 20%">
+            <button class="btn btn-default col-lg-4" onclick="search_clicked()"  style="color:white;background-color: #ffb10b;margin-top: 10px;font-size: x-large;border-radius: 6px;margin-bottom: 20%">
                 جستجو
             </button>
         </div>

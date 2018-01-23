@@ -1,7 +1,8 @@
 <?php
-$movie_id = $_REQUEST["q"];
 
-//echo $movie_id;
+header('Content-type: application/json');
+
+$movie_id = $_REQUEST["id"];
 
 $sqlconnection = new mysqli("localhost","root","root","mysql");
 $query = "select * from comments where movie_id = \"".$movie_id."\"";
