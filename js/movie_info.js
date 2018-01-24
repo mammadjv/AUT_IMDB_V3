@@ -6,6 +6,13 @@ var movie_id;
 var author_id;
 var author="";
 
+
+var faces = {"eye":["eyes1","eyes10","eyes2","eyes3","eyes4","eyes5","eyes6","eyes7","eyes9"],
+        "nose":["nose2","nose3","nose4","nose5","nose6","nose7","nose8","nose9"],
+        "mouth":["mouth1","mouth10","mouth11","mouth3","mouth5","mouth6","mouth7","mouth9"]
+       }
+
+
 function update_author_details(){
     var url = "../php/author_user_name.php";
     $.get(url).done(function (value){
@@ -168,8 +175,16 @@ function get_comments(){
     console.log(movie_id.toString());
     var url = "../php/get_comments.php?id="+movie_id.toString();
     $.get(url,function(value){
-        console.log(value);
-        //return;
+        for(var i = 0 ; i < value.length;i++){
+
+        var rand_num = Math.floor(Math.random() * 9) + 1;
+        var url = "https://api.adorable.io/avatars/face/eyes"+rand_num.toString();
+        rand_num = Math.floor(Math.random() * 9) + 1;
+        url+="/nose"+rand_num;
+        rand_num = Math.floor(Math.random() * 9) + 1;
+        url+="/mouth"+rand_num+"/8e8895";
+        console.log(url);
+
         var all_comments = document.getElementById("all_comments");
 
         var comment_tab = document.createElement("div"); comment_tab.className="comment_tab";
@@ -185,7 +200,10 @@ function get_comments(){
         comment_left_tab.appendChild(text_comment);
 
         var cm_area = document.createElement("textarea"); cm_area.className = "cm_area"; cm_area.setAttribute("rows","6");
+        cm_area.readOnly = true;
+        cm_area.innerHTML = value[i]['comment'];
         text_comment.appendChild(cm_area);
+
 
         var down_tab = document.createElement("div"); down_tab.className = "col-md-12";
         text_comment.appendChild(down_tab);
@@ -233,7 +251,7 @@ function get_comments(){
         var profile_pic = document.createElement("article"); profile_pic.className = "col-lg-3 profile_pic";
         comments_rates_right.appendChild(profile_pic);
 
-        var profile_pic_img = document.createElement("input"); profile_pic_img.setAttribute("type","image");profile_pic_img.setAttribute("src","../img/mohammad_javadi.jpg");
+        var profile_pic_img = document.createElement("input"); profile_pic_img.setAttribute("type","image");profile_pic_img.setAttribute("src",url);
         profile_pic.appendChild(profile_pic_img);
 
         var rating_article = document.createElement("article"); rating_article.className = "col-lg-9 rating";
@@ -250,10 +268,11 @@ function get_comments(){
         prod_range.appendChild(prod_output);
 
         var prod_range_state = document.createElement("output");
-        prod_range_state.innerHTML = "۶ از ۱۰";
+        prod_range_state.innerHTML = value[i]['producer_rate']+ " از 10";
         prod_range.appendChild(prod_range_state);
 
         var prod_range_slider = document.createElement("input"); prod_range_slider.setAttribute("type","range"); prod_range_slider.setAttribute("name","range");prod_range_slider.setAttribute("min","1");prod_range_slider.setAttribute("max","10");prod_range_slider.setAttribute("value","4");
+        prod_range_slider.disabled = true; prod_range_slider.setAttribute('value',value[i]['producer_rate']);
         prod_range.appendChild(prod_range_slider);
 
         var actor_div = document.createElement("div"); actor_div.className="col-xs-12";
@@ -267,10 +286,11 @@ function get_comments(){
         actor_range.appendChild(actor_output);
 
         var actor_range_state = document.createElement("output");
-        actor_range_state.innerHTML = "۷ از ۱۰"
+        actor_range_state.innerHTML = value[i]['actors_rate']+ " از 10";
         actor_range.appendChild(actor_range_state);
 
         var actor_range_slider = document.createElement("input"); actor_range_slider.setAttribute("type","range"); actor_range_slider.setAttribute("name","range");actor_range_slider.setAttribute("min","1");actor_range_slider.setAttribute("max","10");actor_range_slider.setAttribute("value","4");
+            actor_range_slider.disabled = true; actor_range_slider.setAttribute('value',value[i]['actors_rate']);
         actor_range.appendChild(actor_range_slider);
 
         var scrp_div = document.createElement("div"); scrp_div.className="col-xs-12";
@@ -284,19 +304,32 @@ function get_comments(){
         scrp_range.appendChild(scrp_output);
 
         var scrp_range_state = document.createElement("output");
-        scrp_range_state.innerHTML = "۷ از ۱۰";
+        scrp_range_state.innerHTML = value[i]['screen_play_rate']+ " از 10";
         scrp_range.appendChild(scrp_range_state);
 
         var scrp_range_slider = document.createElement("input"); scrp_range_slider.setAttribute("type","range"); scrp_range_slider.setAttribute("name","range");scrp_range_slider.setAttribute("min","1");scrp_range_slider.setAttribute("max","10");scrp_range_slider.setAttribute("value","4");
+            scrp_range_slider.disabled = true; scrp_range_slider.setAttribute('value',value[i]['screen_play_rate']);
         scrp_range.appendChild(scrp_range_slider);
 
         var br = document.createElement("br");
         comments_rate.appendChild(br);
-
+        }
     });
 }
 function set_inner(){
     document.getElementById("comment_tab").innerHTML = this.innerHTML;
+}
+
+function update_sliders(){
+    var prod_range = document.getElementById("prod_range").value;
+    var cast_range = document.getElementById("cast_range").value;
+    var screen_play_range = document.getElementById("screen_play_range").value;
+
+    document.getElementById("prod_range_state").innerHTML = prod_range+" از 10";
+    document.getElementById("cast_range_state").innerHTML = cast_range+" از 10";
+    document.getElementById("screen_play_range_state").innerHTML = screen_play_range+" از 10";
+
+
 }
 
 jQuery(document).ready(function($){

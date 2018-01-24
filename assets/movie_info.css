@@ -49,6 +49,7 @@ form label{
 
 
 .text_comment textarea{
+    direction: ltr;
     border: none;
     overflow: hidden;
     resize:none;
@@ -118,7 +119,7 @@ form label{
 
 .save_comment{
     float: left;  margin-left: 10px; background-color: seagreen;color:white;margin-top: 5px;margin-bottom: 40px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .save_comment button{
