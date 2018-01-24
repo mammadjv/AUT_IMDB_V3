@@ -83,70 +83,75 @@
                     <button class="upper_tab col-lg-1">جوایز</button>
                     <button class="upper_tab col-lg-1">گالری</button>
                 </div>
-                <div class="comments_tab">
-                    <div class="comments_rates col-md-12">
-                        <div  class="col-md-6">
-                            <div class="text_comment">
-                                <textarea rows="6" style="white-space: pre-wrap;width:100%;direction: rtl;color:black;" id="comment_text"></textarea>
-                                <div class="col-md-12">
-                                    <button class="em em-slightly_smiling_face" style="color: red;float: left;border: none">
+                <div id="all_comments">
+                    <div class="comment_tab">
+                        <div class="comments_rates col-md-12">
+                            <div  class="col-md-6">
+                                <div class="text_comment">
+                                    <textarea  rows="6" class="cm_area" id="comment_text"></textarea>
+                                    <div class="col-md-12">
+                                        <article class="emoji_selector">
+                                            <button class="em em-slightly_smiling_face" >
 
+                                            </button>
+                                        </article>
+                                        <form style="direction: rtl">
+                                            <label class="radio-inline">
+                                                <input type="checkbox"  class="form-check-label" id="no_idea" name="radioopt">
+                                                نظری ندارم
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="checkbox"  class="form-check-label" id="idea_no" name="radioopt">
+                                                پیشنهاد نمیکنم
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="checkbox"  class="form-check-label" id="idea_positive" name="radioopt">
+                                                پیشنهاد میکنم
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="save_comment">
+                                    <button class="btn btn-success"  onclick="save_comment()">
+                                    ثبت دیدگاه
                                     </button>
-                                    <form style="direction: rtl">
-                                        <label class="radio-inline">
-                                            <input type="checkbox"  class="form-check-label" id="no_idea" name="radioopt">
-                                            نظری ندارم
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="checkbox"  class="form-check-label" id="idea_no" name="radioopt">
-                                            پیشنهاد نمیکنم
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="checkbox"  class="form-check-label" id="idea_positive" name="radioopt">
-                                            پیشنهاد میکنم
-                                        </label>
-                                    </form>
                                 </div>
                             </div>
-                            <button class="btn btn-default" style="float: left;margin-left: 10px;background-color: seagreen;color:white;margin-top: 5px;margin-bottom: 40px" onclick="save_comment()">
-                                ثبت دیدگاه
-                            </button>
+                            <div  class="col-md-6 comment_rates_right">
+                                <article class="col-lg-3 profile_pic">
+                                    <input type="image" src="../img/mohammad_javadi.jpg">
+                                </article>
+                                <article class="col-lg-9 rating">
+                                        <div class="col-xs-12">
+                                            <div class="range">
+                                                <output >کارگردانی</output>
+                                                <output id="prod_range_state">۶ از ۱۰</output>
+                                                <input type="range" name="range" min="1" max="10" value="4" id="prod_range">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="range">
+                                                <output >بازیگری</output>
+                                                <output id="cast_range_state">۷ از ۱۰</output>
+                                                <input type="range" name="range" min="1" max="10" value="4" id="cast_range">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="range">
+                                                <output>فیلمنامه</output>
+                                                <output id="screen_play_range_state">۵ از ۱۰</output>
+                                                <input type="range" name="range" min="1" max="10" value="4" id="screen_play_range">
+                                            </div>
+                                        </div>
+                                </article>
+                            </div>
+                            <br>
                         </div>
-                        <div  class="col-md-6 comment_rates_right">
-                            <article class="col-lg-3 profile_pic">
-                                <input type="image" style="background-color: red;" src="../img/mohammad_javadi.jpg">
-                            </article>
-                            <article class="col-lg-9 rating">
-                                    <div class="col-xs-12">
-                                        <div class="range">
-                                            <output >کارگردانی</output>
-                                            <output id="prod_range_state">۶ از ۱۰</output>
-                                            <input type="range" name="range" min="1" max="10" value="4" id="prod_range">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="range">
-                                            <output >بازیگری</output>
-                                            <output id="cast_range_state">۷ از ۱۰</output>
-                                            <input type="range" name="range" min="1" max="10" value="4" id="cast_range">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="range">
-                                            <output>فیلمنامه</output>
-                                            <output id="screen_play_range_state">۵ از ۱۰</output>
-                                            <input type="range" name="range" min="1" max="10" value="4" id="screen_play_range">
-                                        </div>
-                                    </div>
-                            </article>
-                        </div>
-                        <br>
                     </div>
                 </div>
                 <br>
                 <br>
+                </div>
             </div>
         </div>
 

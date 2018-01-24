@@ -37,8 +37,8 @@ body div{
 
 form label{
     float: right;
-    margin-right: 1px;
-    color:black;;
+    margin-right: 5px;
+    /*color:#204d74;*/
 }
 
 
@@ -51,6 +51,7 @@ form label{
 .text_comment textarea{
     border: none;
     overflow: hidden;
+    resize:none;
 }
 
 .text_comment button{
@@ -62,6 +63,9 @@ form label{
     filter:brightness(80%);
 }
 
+.cm_area{
+    white-space: pre-wrap;width:100%;direction: rtl;color:black;
+}
 
 .text_comment{
     border: solid;
@@ -112,7 +116,22 @@ form label{
     color:red;
 }
 
-.comments_tab{
+.save_comment{
+    float: left;  margin-left: 10px; background-color: seagreen;color:white;margin-top: 5px;margin-bottom: 40px;
+    border-radius: 15px;
+}
+
+.save_comment button{
+    background-color: seagreen;color:white;
+}
+
+.emoji_selector{
+    color: red;float: left;border: none;margin-bottom: 2px;
+}
+
+
+
+.comment_tab{
     color: black;
     text-align: center;
     right: 10%;

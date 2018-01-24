@@ -165,10 +165,134 @@ function set_elements_attributes(json){
 }
 
 function get_comments(){
-    //console.log(movie_id.toString());
+    console.log(movie_id.toString());
     var url = "../php/get_comments.php?id="+movie_id.toString();
     $.get(url,function(value){
-        console.log("comment received!");
+        console.log(value);
+        //return;
+        var all_comments = document.getElementById("all_comments");
+
+        var comment_tab = document.createElement("div"); comment_tab.className="comment_tab";
+        all_comments.appendChild(comment_tab);
+
+        var comments_rate = document.createElement("div"); comments_rate.className = "comments_rates col-md-12";
+        comment_tab.appendChild(comments_rate);
+
+        var comment_left_tab = document.createElement("div"); comment_left_tab.className = "col-md-6";
+        comments_rate.appendChild(comment_left_tab);
+
+        var text_comment = document.createElement("div");text_comment.className = "text_comment";
+        comment_left_tab.appendChild(text_comment);
+
+        var cm_area = document.createElement("textarea"); cm_area.className = "cm_area"; cm_area.setAttribute("rows","6");
+        text_comment.appendChild(cm_area);
+
+        var down_tab = document.createElement("div"); down_tab.className = "col-md-12";
+        text_comment.appendChild(down_tab);
+
+        var emoji_selector = document.createElement("article");emoji_selector.className = "emoji_selector";
+        //down_tab.appendChild(emoji_selector);
+
+        var emoji_button  = document.createElement("button"); emoji_button.className = "em em-slightly_smiling_face";
+        emoji_selector.appendChild(emoji_button);
+
+        var down_form = document.createElement("form"); down_form.setAttribute("style","direction:rtl");
+        down_tab.appendChild(down_form);
+
+        var no_idea = document.createElement("label"); no_idea.className="radio-inline";
+        down_form.appendChild(no_idea);
+
+        var no_idea_check_box = document.createElement("input");no_idea_check_box.className = "form-check-label" ;no_idea_check_box.setAttribute("type","checkbox");no_idea_check_box.setAttribute("name","radioopt");
+        no_idea.appendChild(no_idea_check_box);
+        no_idea.innerHTML += " نظری ندارم";
+
+        var no_offer = document.createElement("label"); no_offer.className="radio-inline";
+        down_form.appendChild(no_offer);
+
+        var no_offer_check_box = document.createElement("input");no_offer_check_box.className = "form-check-label" ;no_offer_check_box.setAttribute("type","checkbox");no_offer_check_box.setAttribute("name","radioopt");
+        no_offer.appendChild(no_idea_check_box);
+        no_offer.innerHTML += " پیشنهاد نمیکنم" ;
+
+        var offer = document.createElement("label"); offer.className="radio-inline";
+        down_form.appendChild(offer);
+
+        var offer_check_box = document.createElement("input");offer_check_box.className = "form-check-label" ;offer_check_box.setAttribute("type","checkbox");offer_check_box.setAttribute("name","radioopt");
+        offer.appendChild(offer_check_box);
+        offer.innerHTML+= " پیشنهاد میکنم";
+
+        var save_comment = document.createElement("div"); save_comment.className="save_comment";
+        comment_left_tab.appendChild(save_comment);
+
+        var save_comment_button = document.createElement("button"); save_comment_button.className="btn btn-default"; save_comment_button.setAttribute("onclick","save_comment()");
+        save_comment_button.innerHTML="ثبت دیدگاه";
+        //save_comment.appendChild(save_comment_button);
+
+        var comments_rates_right = document.createElement("div"); comments_rates_right.className = "col-md-6 comment_rates_right";
+        comments_rate.appendChild(comments_rates_right);
+
+        var profile_pic = document.createElement("article"); profile_pic.className = "col-lg-3 profile_pic";
+        comments_rates_right.appendChild(profile_pic);
+
+        var profile_pic_img = document.createElement("input"); profile_pic_img.setAttribute("type","image");profile_pic_img.setAttribute("src","../img/mohammad_javadi.jpg");
+        profile_pic.appendChild(profile_pic_img);
+
+        var rating_article = document.createElement("article"); rating_article.className = "col-lg-9 rating";
+        comments_rates_right.appendChild(rating_article);
+
+        var prod_div = document.createElement("div"); prod_div.className="col-xs-12";
+        rating_article.appendChild(prod_div);
+
+        var prod_range = document.createElement("div"); prod_range.className = "range";
+        prod_div.appendChild(prod_range);
+
+        var prod_output = document.createElement("output");
+        prod_output.innerHTML = "کارگردانی";
+        prod_range.appendChild(prod_output);
+
+        var prod_range_state = document.createElement("output");
+        prod_range_state.innerHTML = "۶ از ۱۰";
+        prod_range.appendChild(prod_range_state);
+
+        var prod_range_slider = document.createElement("input"); prod_range_slider.setAttribute("type","range"); prod_range_slider.setAttribute("name","range");prod_range_slider.setAttribute("min","1");prod_range_slider.setAttribute("max","10");prod_range_slider.setAttribute("value","4");
+        prod_range.appendChild(prod_range_slider);
+
+        var actor_div = document.createElement("div"); actor_div.className="col-xs-12";
+        rating_article.appendChild(actor_div);
+
+        var actor_range = document.createElement("div"); actor_range.className = "range";
+        actor_div.appendChild(actor_range);
+
+        var actor_output = document.createElement("output");
+        actor_output.innerHTML = "بازیگری";
+        actor_range.appendChild(actor_output);
+
+        var actor_range_state = document.createElement("output");
+        actor_range_state.innerHTML = "۷ از ۱۰"
+        actor_range.appendChild(actor_range_state);
+
+        var actor_range_slider = document.createElement("input"); actor_range_slider.setAttribute("type","range"); actor_range_slider.setAttribute("name","range");actor_range_slider.setAttribute("min","1");actor_range_slider.setAttribute("max","10");actor_range_slider.setAttribute("value","4");
+        actor_range.appendChild(actor_range_slider);
+
+        var scrp_div = document.createElement("div"); scrp_div.className="col-xs-12";
+        rating_article.appendChild(scrp_div);
+
+        var scrp_range = document.createElement("div"); scrp_range.className = "range";
+        scrp_div.appendChild(scrp_range);
+
+        var scrp_output = document.createElement("output");
+        scrp_output.innerHTML = "فیلمنامه";
+        scrp_range.appendChild(scrp_output);
+
+        var scrp_range_state = document.createElement("output");
+        scrp_range_state.innerHTML = "۷ از ۱۰";
+        scrp_range.appendChild(scrp_range_state);
+
+        var scrp_range_slider = document.createElement("input"); scrp_range_slider.setAttribute("type","range"); scrp_range_slider.setAttribute("name","range");scrp_range_slider.setAttribute("min","1");scrp_range_slider.setAttribute("max","10");scrp_range_slider.setAttribute("value","4");
+        scrp_range.appendChild(scrp_range_slider);
+
+        var br = document.createElement("br");
+        comments_rate.appendChild(br);
+
     });
 }
 function set_inner(){
@@ -176,12 +300,6 @@ function set_inner(){
 }
 
 jQuery(document).ready(function($){
-
-    $('#ex1').slider({
-        formatter: function(value) {
-            return 'Current value: ' + value;
-        }
-    });
 
     var passed_value = window.location.search;
     //console.log("salam");
