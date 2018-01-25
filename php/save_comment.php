@@ -11,26 +11,26 @@ $json_encode = json_encode($json_decode);
 //echo $json_decode['comment_text'];
 //echo $json_encode;
 //return;
-$comment_text =  $json_value['comment_text'];
+$comment_text =  $json_value['comment'];
 $movie_id = $json_value['movie_id'];
-//echo $comment_text;
-$prod_rate =  $json_value['prod_rate'];
-$cast_rate =  $json_value['cast_rate'];
+$prod_rate =  $json_value['producer_rate'];
+$cast_rate =  $json_value['actors_rate'];
 $screen_play_rate =  $json_value['screen_play_rate'];
-$date_time =  $json_value['date_time'];
+$date_time =  $json_value['created_at'];
 $author = $json_value['author'];
+$idea = $json_value['idea'];
 
 //echo $comment_text;
 //return;
 $sqlconnection = new mysqli("localhost","root","root","mysql");
 
-$query = "insert into comments(movie_id, created_at, author, comment, producer_rate, actors_rate, screen_play_rate) VALUES(?,?,?,?,?,?,?);";
+$query = "insert into comments(movie_id, created_at, author, comment, idea,producer_rate, actors_rate, screen_play_rate) VALUES(?,?,?,?,?,?,?,?);";
 
 $stmt = $sqlconnection->prepare($query);
-$stmt->bind_param('sssssss', $movie_id,$date_time,$author,$comment_text,$prod_rate,$cast_rate,$screen_play_rate);
+$stmt->bind_param('ssssssss', $movie_id,$date_time,$author,$comment_text,$idea,$prod_rate,$cast_rate,$screen_play_rate);
 $stmt->execute();
 $result = $stmt->get_result();
-echo $result;
+echo json_encode($json_value);
 
 //$query = "insert into comments(movie_id, created_at, author, comment, producer_rate, actors_rate, screen_play_rate)
 //VALUES(\"".$movie_id."\", '".$date_time."', \"".$author."\", \"".$comment_text."\", ".$prod_rate.", ".$cast_rate.", ".$screen_play_rate.");";

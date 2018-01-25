@@ -45,14 +45,35 @@ function save_comment(){
         + currentdate.getSeconds();
 
     var obj = {};
-    obj['comment_text'] = comment;
+    obj['comment'] = comment;
     obj['movie_id'] = movie_id.toString();
-    obj['prod_rate'] = prod_rate.toString();
-    obj['cast_rate'] = cast_rate.toString();
+    obj['producer_rate'] = prod_rate.toString();
+    obj['actors_rate'] = cast_rate.toString();
     obj['screen_play_rate'] = screen_play_rate.toString();
-    obj['date_time'] = datetime.toString();
+    obj['created_at'] = datetime.toString();
     obj['author'] = author.toString();
-    
+
+    console.log(document.getElementById("no_idea").checked);
+    console.log(document.getElementById("idea").checked);
+    console.log(document.getElementById("no_offer").checked);
+    //return;
+
+    if(document.getElementById("no_idea").checked == true){
+        obj['idea'] = "no_idea";
+    }
+    else
+    if(document.getElementById("idea").checked == true){
+
+        obj['idea'] = "idea";
+    }
+    else{
+
+        obj['idea'] = "no_offer";
+    }
+    document.getElementById("no_idea").checked = false;
+    document.getElementById("idea").checked = false;
+    document.getElementById("no_offer").checked = false;
+
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "../php/save_comment.php", true);
@@ -61,9 +82,11 @@ function save_comment(){
         if (this.readyState == 4 && this.status == 200){
             alert("دیدگاه شما با موفقیت ثبت گردید.");
             document.getElementById("comment_text").value = "";
+            add_comment(obj);
         }
     };
     xhttp.send(JSON.stringify(obj));
+
 }
 
 function get_value(page_data, k) {
@@ -171,148 +194,172 @@ function set_elements_attributes(json){
     get_comments();
 }
 
-function get_comments(){
-    console.log(movie_id.toString());
-    var url = "../php/get_comments.php?id="+movie_id.toString();
-    $.get(url,function(value){
-        for(var i = 0 ; i < value.length;i++){
+function add_comment(value){
 
-        var rand_num = Math.floor(Math.random() * 9) + 1;
-        var url = "https://api.adorable.io/avatars/face/eyes"+rand_num.toString();
-        rand_num = Math.floor(Math.random() * 9) + 1;
-        url+="/nose"+rand_num;
-        rand_num = Math.floor(Math.random() * 9) + 1;
-        url+="/mouth"+rand_num+"/8e8895";
-        console.log(url);
+    var rand_num = Math.floor(Math.random() * 9) + 1;
+    var url = "https://api.adorable.io/avatars/face/eyes"+rand_num.toString();
+    rand_num = Math.floor(Math.random() * 9) + 1;
+    url+="/nose"+rand_num;
+    rand_num = Math.floor(Math.random() * 9) + 1;
+    url+="/mouth"+rand_num+"/8e8895";
+    console.log(url);
 
-        var all_comments = document.getElementById("all_comments");
+    var all_comments = document.getElementById("all_comments");
 
-        var comment_tab = document.createElement("div"); comment_tab.className="comment_tab";
-        all_comments.appendChild(comment_tab);
+    var comment_tab = document.createElement("div"); comment_tab.className="comment_tab";
+    all_comments.appendChild(comment_tab);
 
-        var comments_rate = document.createElement("div"); comments_rate.className = "comments_rates col-md-12";
-        comment_tab.appendChild(comments_rate);
+    var comments_rate = document.createElement("div"); comments_rate.className = "comments_rates col-md-12";
+    comment_tab.appendChild(comments_rate);
 
-        var comment_left_tab = document.createElement("div"); comment_left_tab.className = "col-md-6";
-        comments_rate.appendChild(comment_left_tab);
+    var comment_left_tab = document.createElement("div"); comment_left_tab.className = "col-md-6";
+    comments_rate.appendChild(comment_left_tab);
 
-        var text_comment = document.createElement("div");text_comment.className = "text_comment";
-        comment_left_tab.appendChild(text_comment);
+    var text_comment = document.createElement("div");text_comment.className = "text_comment";
+    comment_left_tab.appendChild(text_comment);
 
-        var cm_area = document.createElement("textarea"); cm_area.className = "cm_area"; cm_area.setAttribute("rows","6");
-        cm_area.readOnly = true;
-        cm_area.innerHTML = value[i]['comment'];
-        text_comment.appendChild(cm_area);
+    var cm_area = document.createElement("textarea"); cm_area.className = "cm_area";cm_area.setAttribute("rows","3");
+    cm_area.setAttribute("style","margin-top:20px;padding-left:20px;padding-right:20px");
+    cm_area.readOnly = true;
+    cm_area.innerHTML = value.comment;
 
 
-        var down_tab = document.createElement("div"); down_tab.className = "col-md-12";
-        text_comment.appendChild(down_tab);
+    var down_tab = document.createElement("div"); down_tab.className = "col-md-12";
+    text_comment.appendChild(down_tab);
+    text_comment.appendChild(cm_area);
+    var emoji_selector = document.createElement("article");emoji_selector.className = "emoji_selector";
 
-        var emoji_selector = document.createElement("article");emoji_selector.className = "emoji_selector";
-        //down_tab.appendChild(emoji_selector);
+    var emoji_button  = document.createElement("button"); emoji_button.className = "em em-slightly_smiling_face";
+    emoji_selector.appendChild(emoji_button);
 
-        var emoji_button  = document.createElement("button"); emoji_button.className = "em em-slightly_smiling_face";
-        emoji_selector.appendChild(emoji_button);
+    var down_form = document.createElement("form"); down_form.setAttribute("style","float:left");
+    down_tab.appendChild(down_form);
+    var date_time = document.createElement("article");
+    date_time.innerHTML = value.created_at;
+    date_time.className = "comment_date_time";
 
-        var down_form = document.createElement("form"); down_form.setAttribute("style","direction:rtl");
-        down_tab.appendChild(down_form);
 
-        var no_idea = document.createElement("label"); no_idea.className="radio-inline";
-        down_form.appendChild(no_idea);
+    down_tab.appendChild(date_time);
 
-        var no_idea_check_box = document.createElement("input");no_idea_check_box.className = "form-check-label" ;no_idea_check_box.setAttribute("type","checkbox");no_idea_check_box.setAttribute("name","radioopt");
-        no_idea.appendChild(no_idea_check_box);
-        no_idea.innerHTML += " نظری ندارم";
-
-        var no_offer = document.createElement("label"); no_offer.className="radio-inline";
-        down_form.appendChild(no_offer);
-
-        var no_offer_check_box = document.createElement("input");no_offer_check_box.className = "form-check-label" ;no_offer_check_box.setAttribute("type","checkbox");no_offer_check_box.setAttribute("name","radioopt");
-        no_offer.appendChild(no_idea_check_box);
-        no_offer.innerHTML += " پیشنهاد نمیکنم" ;
-
+    if(value.idea == "idea"){
         var offer = document.createElement("label"); offer.className="radio-inline";
         down_form.appendChild(offer);
 
         var offer_check_box = document.createElement("input");offer_check_box.className = "form-check-label" ;offer_check_box.setAttribute("type","checkbox");offer_check_box.setAttribute("name","radioopt");
         offer.appendChild(offer_check_box);
+        offer_check_box.setAttribute("checked","checked");
+        offer_check_box.setAttribute("onclick","return false;");
         offer.innerHTML+= " پیشنهاد میکنم";
 
-        var save_comment = document.createElement("div"); save_comment.className="save_comment";
-        comment_left_tab.appendChild(save_comment);
+    }
+    else
+    if(value.idea == "no_idea"){
+        var no_idea = document.createElement("label"); no_idea.className="radio-inline";
+        down_form.appendChild(no_idea);
 
-        var save_comment_button = document.createElement("button"); save_comment_button.className="btn btn-default"; save_comment_button.setAttribute("onclick","save_comment()");
-        save_comment_button.innerHTML="ثبت دیدگاه";
-        //save_comment.appendChild(save_comment_button);
+        var no_idea_check_box = document.createElement("input");no_idea_check_box.className = "form-check-label" ;no_idea_check_box.setAttribute("type","checkbox");no_idea_check_box.setAttribute("name","radioopt");
+        no_idea.appendChild(no_idea_check_box);
+        no_idea_check_box.setAttribute("checked","checked");
+        no_idea_check_box.setAttribute("onclick","return false;");
+        no_idea.innerHTML += "  پیشنهاد نمیکنم";
+    }
+    else{
+        var no_offer = document.createElement("label"); no_offer.className="radio-inline";
+        down_form.appendChild(no_offer);
 
-        var comments_rates_right = document.createElement("div"); comments_rates_right.className = "col-md-6 comment_rates_right";
-        comments_rate.appendChild(comments_rates_right);
+        var no_offer_check_box = document.createElement("input");no_offer_check_box.className = "form-check-label" ;no_offer_check_box.setAttribute("type","checkbox");no_offer_check_box.setAttribute("name","radioopt");
+        no_offer.appendChild(no_offer_check_box);
+        no_offer_check_box.checked = true;
+        no_offer_check_box.setAttribute("checked","checked");
+        no_offer_check_box.setAttribute("onclick","return false;");
+        no_offer.innerHTML += " نظری ندارم" ;
+    }
 
-        var profile_pic = document.createElement("article"); profile_pic.className = "col-lg-3 profile_pic";
-        comments_rates_right.appendChild(profile_pic);
 
-        var profile_pic_img = document.createElement("input"); profile_pic_img.setAttribute("type","image");profile_pic_img.setAttribute("src",url);
-        profile_pic.appendChild(profile_pic_img);
+    var save_comment = document.createElement("div"); save_comment.className="save_comment";
+    comment_left_tab.appendChild(save_comment);
 
-        var rating_article = document.createElement("article"); rating_article.className = "col-lg-9 rating";
-        comments_rates_right.appendChild(rating_article);
+    var save_comment_button = document.createElement("button"); save_comment_button.className="btn btn-default"; save_comment_button.setAttribute("onclick","save_comment()");
+    save_comment_button.innerHTML="ثبت دیدگاه";
 
-        var prod_div = document.createElement("div"); prod_div.className="col-xs-12";
-        rating_article.appendChild(prod_div);
+    var comments_rates_right = document.createElement("div"); comments_rates_right.className = "col-md-6 comment_rates_right";
+    comments_rate.appendChild(comments_rates_right);
 
-        var prod_range = document.createElement("div"); prod_range.className = "range";
-        prod_div.appendChild(prod_range);
+    var profile_pic = document.createElement("article"); profile_pic.className = "col-lg-3 profile_pic";
+    comments_rates_right.appendChild(profile_pic);
 
-        var prod_output = document.createElement("output");
-        prod_output.innerHTML = "کارگردانی";
-        prod_range.appendChild(prod_output);
+    var profile_pic_img = document.createElement("input"); profile_pic_img.setAttribute("type","image");profile_pic_img.setAttribute("src",url);
+    profile_pic.appendChild(profile_pic_img);
 
-        var prod_range_state = document.createElement("output");
-        prod_range_state.innerHTML = value[i]['producer_rate']+ " از 10";
-        prod_range.appendChild(prod_range_state);
+    var rating_article = document.createElement("article"); rating_article.className = "col-lg-9 rating";
+    comments_rates_right.appendChild(rating_article);
 
-        var prod_range_slider = document.createElement("input"); prod_range_slider.setAttribute("type","range"); prod_range_slider.setAttribute("name","range");prod_range_slider.setAttribute("min","1");prod_range_slider.setAttribute("max","10");prod_range_slider.setAttribute("value","4");
-        prod_range_slider.disabled = true; prod_range_slider.setAttribute('value',value[i]['producer_rate']);
-        prod_range.appendChild(prod_range_slider);
+    var prod_div = document.createElement("div"); prod_div.className="col-xs-12";
+    rating_article.appendChild(prod_div);
 
-        var actor_div = document.createElement("div"); actor_div.className="col-xs-12";
-        rating_article.appendChild(actor_div);
+    var prod_range = document.createElement("div"); prod_range.className = "range";
+    prod_div.appendChild(prod_range);
 
-        var actor_range = document.createElement("div"); actor_range.className = "range";
-        actor_div.appendChild(actor_range);
+    var prod_output = document.createElement("output");
+    prod_output.innerHTML = "کارگردانی";
+    prod_range.appendChild(prod_output);
 
-        var actor_output = document.createElement("output");
-        actor_output.innerHTML = "بازیگری";
-        actor_range.appendChild(actor_output);
+    var prod_range_state = document.createElement("output");
+    prod_range_state.innerHTML = value.producer_rate+ " از 10";
+    prod_range.appendChild(prod_range_state);
 
-        var actor_range_state = document.createElement("output");
-        actor_range_state.innerHTML = value[i]['actors_rate']+ " از 10";
-        actor_range.appendChild(actor_range_state);
+    var prod_range_slider = document.createElement("input"); prod_range_slider.setAttribute("type","range"); prod_range_slider.setAttribute("name","range");prod_range_slider.setAttribute("min","1");prod_range_slider.setAttribute("max","10");prod_range_slider.setAttribute("value","4");
+    prod_range_slider.disabled = true; prod_range_slider.setAttribute('value',value.producer_rate);
+    prod_range.appendChild(prod_range_slider);
 
-        var actor_range_slider = document.createElement("input"); actor_range_slider.setAttribute("type","range"); actor_range_slider.setAttribute("name","range");actor_range_slider.setAttribute("min","1");actor_range_slider.setAttribute("max","10");actor_range_slider.setAttribute("value","4");
-            actor_range_slider.disabled = true; actor_range_slider.setAttribute('value',value[i]['actors_rate']);
-        actor_range.appendChild(actor_range_slider);
+    var actor_div = document.createElement("div"); actor_div.className="col-xs-12";
+    rating_article.appendChild(actor_div);
 
-        var scrp_div = document.createElement("div"); scrp_div.className="col-xs-12";
-        rating_article.appendChild(scrp_div);
+    var actor_range = document.createElement("div"); actor_range.className = "range";
+    actor_div.appendChild(actor_range);
 
-        var scrp_range = document.createElement("div"); scrp_range.className = "range";
-        scrp_div.appendChild(scrp_range);
+    var actor_output = document.createElement("output");
+    actor_output.innerHTML = "بازیگری";
+    actor_range.appendChild(actor_output);
 
-        var scrp_output = document.createElement("output");
-        scrp_output.innerHTML = "فیلمنامه";
-        scrp_range.appendChild(scrp_output);
+    var actor_range_state = document.createElement("output");
+    actor_range_state.innerHTML = value.actors_rate+ " از 10";
+    actor_range.appendChild(actor_range_state);
 
-        var scrp_range_state = document.createElement("output");
-        scrp_range_state.innerHTML = value[i]['screen_play_rate']+ " از 10";
-        scrp_range.appendChild(scrp_range_state);
+    var actor_range_slider = document.createElement("input"); actor_range_slider.setAttribute("type","range"); actor_range_slider.setAttribute("name","range");actor_range_slider.setAttribute("min","1");actor_range_slider.setAttribute("max","10");actor_range_slider.setAttribute("value","4");
+    actor_range_slider.disabled = true; actor_range_slider.setAttribute('value',value.actors_rate);
+    actor_range.appendChild(actor_range_slider);
 
-        var scrp_range_slider = document.createElement("input"); scrp_range_slider.setAttribute("type","range"); scrp_range_slider.setAttribute("name","range");scrp_range_slider.setAttribute("min","1");scrp_range_slider.setAttribute("max","10");scrp_range_slider.setAttribute("value","4");
-            scrp_range_slider.disabled = true; scrp_range_slider.setAttribute('value',value[i]['screen_play_rate']);
-        scrp_range.appendChild(scrp_range_slider);
+    var scrp_div = document.createElement("div"); scrp_div.className="col-xs-12";
+    rating_article.appendChild(scrp_div);
 
-        var br = document.createElement("br");
-        comments_rate.appendChild(br);
+    var scrp_range = document.createElement("div"); scrp_range.className = "range";
+    scrp_div.appendChild(scrp_range);
+
+    var scrp_output = document.createElement("output");
+    scrp_output.innerHTML = "فیلمنامه";
+    scrp_range.appendChild(scrp_output);
+
+    var scrp_range_state = document.createElement("output");
+    scrp_range_state.innerHTML = value.screen_play_rate+ " از 10";
+    scrp_range.appendChild(scrp_range_state);
+
+    var scrp_range_slider = document.createElement("input"); scrp_range_slider.setAttribute("type","range"); scrp_range_slider.setAttribute("name","range");scrp_range_slider.setAttribute("min","1");scrp_range_slider.setAttribute("max","10");scrp_range_slider.setAttribute("value","4");
+    scrp_range_slider.disabled = true; scrp_range_slider.setAttribute('value',value.screen_play_rate);
+    scrp_range.appendChild(scrp_range_slider);
+
+    var br = document.createElement("br");
+    comments_rate.appendChild(br);
+
+}
+
+function get_comments(){
+    console.log(movie_id.toString());
+    var url = "../php/get_comments.php?id="+movie_id.toString();
+    $.get(url,function(value){
+        for(var i = 0 ; i < value.length;i++){
+            console.log(value[i]);
+            add_comment(value[i]);
         }
     });
 }
@@ -354,4 +401,6 @@ jQuery(document).ready(function($){
         atag.id = 'a'+i;
         atag.onclick = set_inner;
     }
+
+
 });

@@ -255,7 +255,7 @@ function init_second_carousel(){
     //return;
     var s_carousel_div = document.getElementById("second_owl_demo");
 
-    for (var i = 0 ; i < hottest_films.length ; i++){
+    for (var i = 0 ; i < film_ids.length ; i++){
 
         var item_div = document.createElement("div");
         item_div.className = "sitem";
@@ -282,7 +282,7 @@ function init_second_carousel(){
 
     var received_item = 0;
     //return;
-    for (var i = 0 ; i < hottest_films.length ; i++) {
+    for (var i = 0 ; i < film_ids.length ; i++) {
         var url = "../php/details.php?id="+film_ids[i].toString();
         $.get(url).done(function (object){
             //console.log(object);

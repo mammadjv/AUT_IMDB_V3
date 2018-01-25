@@ -10,6 +10,8 @@
 
 .radio-inline{
     color: grey;
+    direction: ltr;
+    /*padding-left: 20px;*/
     /*font-weight: ;*/
 }
 
@@ -34,6 +36,10 @@ body div{
     width: 80%;
 }
 
+input[type="range"]{
+    direction: ltr;
+}
+
 
 form label{
     float: right;
@@ -47,12 +53,30 @@ form label{
     margin-right: 5px;
 }
 
+input[type="checkbox"]{
+    pointer-events: none;
+    /*padding-right: 10px;*/
+    /*padding-right: 5px;*/
+}
+
+input[type="checkbox"]:checked{
+    pointer-events: none;
+}
 
 .text_comment textarea{
     direction: ltr;
     border: none;
     overflow: hidden;
     resize:none;
+    overflow-y: scroll;
+    /*border:solid;*/
+    /*border-color: red;*/
+    /*max-height: 100px;*/
+}
+
+.comment_date_time{
+    color:darkgray;
+    float:right;
 }
 
 .text_comment button{
@@ -65,7 +89,10 @@ form label{
 }
 
 .cm_area{
-    white-space: pre-wrap;width:100%;direction: rtl;color:black;
+    white-space: pre-wrap;
+    width:100%;
+    direction: rtl;
+    color:black;
 }
 
 .text_comment{
@@ -347,7 +374,7 @@ div::-webkit-scrollbar{
 }
 
 
-.range output {
+.range output, output {
     display: table-cell;
     padding: 3px 5px 2px;
     min-width: 40px;
