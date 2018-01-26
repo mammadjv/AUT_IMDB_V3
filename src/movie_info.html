@@ -12,156 +12,176 @@
     </title>
 </head>
 <body>
-    <div>
-        <div class="movie_info">
-            <div id ="film_name" style="height: 20px; background: none;margin-right: 6%">
-                دانلود انیمیشن
-            </div>
-            <div class="btn-group" id="movies_genres" style="background: none;float: right">
-            </div>
-            <br>
-            <br>
-            <div class="row" style="position:relative;top:0%;height: 80%;left: 0%;width: 100%;margin-left: 0px;margin-top: 30px;background-color: darkorange">
-                <input id="background" type="image" src="../img/imdb_.jpg" style="filter:brightness(30%)">
-                <div id = "left_pannel" style="margin-left: 0%;">
-                    <br>
-                    <button id="votes_and_rate" class="btn-default" type="button" style="color: yellow;background: none;filter:brightness(90%);display: inline-block;width: 200px;height: 30px;">
+<!--<div>-->
+    <div class="movie_info">
+        <div id ="film_name" style="height: 20px; background: none;margin-right: 6%">
+            دانلود انیمیشن
+        </div>
+        <div class="btn-group" id="movies_genres" style="background: none;float: right">
+        </div>
+        <br>
+        <br>
+        <div style=";direction: rtl;position:relative;top:0%;height: 80%;left: 0%;width: 100%;margin-left: 0px;margin-top: 30px;margin-bottom: 5px;background-color: darkorange">
+            <input id="background" type="image" src="../img/imdb_.jpg" style="filter:brightness(30%)">
+            <!--<article>-->
+            <img  class="col-lg-2" id ="film_icon" src="../img/ny.jpg" style=";margin-top: 0px;margin-left: 30px;background-color: darkorange">
+            <!--</article>-->
+            <article class="col-lg-9" id = "left_pannel">
+                <br>
+                <button id="votes_and_rate" class="btn-default" type="button" style="color: yellow;background: none;filter:brightness(90%);display: inline-block;width: 200px;height: 30px;">
 
-                    </button>
-                    <button class="btn-default" type="button" style="color: black;background-color: orange;filter:brightness(90%);border: none;height: 30px">
-                        IMDB
-                    </button>
-                    <button class="btn-default" type="button" style="color: white;background-color: dodgerblue;filter:brightness(90%);border: none;height: 30px">
-                        Subscene
-                    </button>
-                    <br>
-                    <div  class="row btn-group" id ="time_country">
-                        <label id="year" style="margin-right: 0px">
-                            asd
-                        </label>
-                        <label id = "time" style="direction: ltr">
-                            wer
-                        </label>
-                        <label id="language">
-                            wer
-                        </label>
-                        <label id="rate" style="border: solid; padding: 5px; border-width: 1px;border-radius: 4px;">
-                            PG
-                        </label>
-                        <label id="country" style="margin-left: 70px">
-                            country
-                        </label>
-                    </div>
-                    <hr>
-                    <div id="film_title">
-                        asdasd
-                    </div>
-                    <div id="film_description" style="direction: ltr">
-
-                    </div>
-                    <hr>
-                    <div id="director" >
-                        <!--asdasd-->
-                    </div>
-                    <div id="writer" style="direction: rtl">
-                        asdasd
-                    </div>
-                    <div id="stars">
-                        asdas
-                    </div>
+                </button>
+                <button class="btn-default" type="button" style="color: black;background-color: orange;filter:brightness(90%);border: none;height: 30px">
+                    IMDB
+                </button>
+                <button class="btn-default" type="button" style="color: white;background-color: dodgerblue;filter:brightness(90%);border: none;height: 30px">
+                    Subscene
+                </button>
+                <br>
+                <div  class="row " id ="time_country">
+                    <label id="year" style="margin-right: 0px">
+                        asd
+                    </label>
+                    <label id = "time" style="direction: ltr">
+                        wer
+                    </label>
+                    <label id="language">
+                        wer
+                    </label>
+                    <label id="rate" style="border: solid; padding: 5px; border-width: 1px;border-radius: 4px;">
+                        PG
+                    </label>
+                    <label id="country" style="margin-left: 70px">
+                        country
+                    </label>
+                </div>
+                <hr>
+                <div id="film_title">
+                    asdasd
+                </div>
+                <div id="film_description" style="direction: ltr">
 
                 </div>
-                <img  class="col-lg-3" id = "film_icon" src="../img/ny.jpg" style="margin-top: 0px;margin-right: 0px;background-color: darkorange">
-            </div>
-            <div class="options" style="background-color: white">
-                <div  class="all_upper_tab" style="background-color: white">
-                    <button class="upper_tab col-lg-2">دانلود</button>
-                    <button class="upper_tab col-lg-2">زیرنویس</button>
-                    <button class="upper_tab col-lg-2">نظر کاربران</button>
-                    <button class="upper_tab col-lg-2">عوامل فیلم</button>
-                    <button class="upper_tab col-lg-2">نقد و بررسی</button>
-                    <button class="upper_tab col-lg-1">جوایز</button>
-                    <button class="upper_tab col-lg-1">گالری</button>
+                <hr>
+                <div id="director" >
+                    <!--asdasd-->
                 </div>
-                <div id="all_comments">
-                    <div class="comment_tab">
-                        <div class="comments_rates col-md-12">
-                            <div  class="col-md-6">
-                                <div class="text_comment">
-                                    <textarea  rows="4" class="cm_area" id="comment_text"></textarea>
-                                    <div class="col-md-12">
-                                        <article class="emoji_selector">
-                                            <button class="em em-slightly_smiling_face" >
+                <div id="writer" style="direction: rtl">
+                    asdasd
+                </div>
+                <div id="stars">
+                    asdas
+                </div>
+                <br>
+            </article>
 
-                                            </button>
-                                        </article>
-                                        <form style="direction: rtl">
-                                            <label class="radio-inline">
-                                                <input type="checkbox" class="form-check-label" id="no_offer" name="radioopt">
-                                                نظری ندارم
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="checkbox" class="form-check-label" id="no_idea" name="radioopt">
-                                                پیشنهاد نمیکنم
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="checkbox" class="form-check-label" id="idea" name="radioopt">
-                                                پیشنهاد میکنم
-                                            </label>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="save_comment">
-                                    <button class="btn btn-success"  onclick="save_comment()">
-                                    ثبت دیدگاه
-                                    </button>
-                                </div>
-                            </div>
-                            <div  class="col-md-6 comment_rates_right">
-                                <article class="col-lg-3 profile_pic">
-                                    <input type="image" src="../img/mohammad_javadi.jpg">
-                                </article>
-                                <article class="col-lg-9 rating">
-                                        <div class="col-xs-12">
-                                            <div class="range">
-                                                <output >کارگردانی</output>
-                                                <output id="prod_range_state">4 از 10</output>
-                                                <input type="range" name="range" min="1" max="10" value="4" id="prod_range" onchange="update_sliders()">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="range">
-                                                <output >بازیگری</output>
-                                                <output id="cast_range_state">4 از 10</output>
-                                                <input type="range" name="range" min="1" max="10" value="4" id="cast_range" onchange="update_sliders()">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="range">
-                                                <output>فیلمنامه</output>
-                                                <output id="screen_play_range_state">4 از 10</output>
-                                                <input type="range" name="range" min="1" max="10" value="4" id="screen_play_range" onchange="update_sliders()">
-                                            </div>
-                                        </div>
-                                </article>
-                            </div>
-                            <br>
+        </div>
+
+    </div>
+<br>
+<br>
+    <div class="options" style="background-color: white;direction: rtl">
+        <article  class="all_upper_tab" style="background-color: white">
+            <button class="upper_tab col-lg-2">دانلود</button>
+            <button class="upper_tab col-lg-2">زیرنویس</button>
+            <button class="upper_tab col-lg-2">نظر کاربران</button>
+            <button class="upper_tab col-lg-2">عوامل فیلم</button>
+            <button class="upper_tab col-lg-2">نقد و بررسی</button>
+            <button class="upper_tab col-lg-1">جوایز</button>
+            <button class="upper_tab col-lg-1">گالری</button>
+        </article>
+    </div>
+    <article id="all_comments">
+        <div class="comment_tab">
+            <div class="comments_rates col-md-12">
+                <div  class="col-md-6">
+                    <div class="text_comment">
+                        <textarea  rows="4" class="cm_area" id="comment_text"></textarea>
+                        <div class="col-md-12">
+                            <article class="emoji_selector">
+                                <button class="em em-slightly_smiling_face" >
+
+                                </button>
+                            </article>
+                            <form style="direction: rtl">
+                                <label class="radio-inline">
+                                    <input type="checkbox" class="form-check-label" id="no_offer" name="radioopt">
+                                نظری ندارم
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="checkbox" class="form-check-label" id="no_idea" name="radioopt">
+                                پیشنهاد نمیکنم
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="checkbox" class="form-check-label" id="idea" name="radioopt">
+                                پیشنهاد میکنم
+                                </label>
+                            </form>
                         </div>
                     </div>
+                    <div class="save_comment">
+                        <button class="btn btn-success"  onclick="save_comment()">
+                        ثبت دیدگاه
+                        </button>
+                    </div>
+                </div>
+                <div  class="col-md-6 comment_rates_right">
+                    <article class="col-lg-3 profile_pic">
+                        <input type="image" src="../img/mohammad_javadi.jpg">
+                    </article>
+                    <article class="col-lg-9 rating">
+                        <div class="col-xs-12">
+                            <div class="range">
+                                <output >کارگردانی</output>
+                                <output id="prod_range_state">4 از 10
+                                </output>
+                                <input type="range" name="range" min="1" max="10" value="4" id="prod_range" onchange="update_sliders()">
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="range">
+                                <output >بازیگری</output>
+                                <output id="cast_range_state">4 از 10</output>
+                                <input type="range" name="range" min="1" max="10" value="4" id="cast_range" onchange="update_sliders()">
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="range">
+                                <output>فیلمنامه</output>
+                                <output id="screen_play_range_state">4 از 10</output>
+                                <input type="range" name="range" min="1" max="10" value="4" id="screen_play_range" onchange="update_sliders()">
+                            </div>
+                        </div>
+                    </article>
                 </div>
                 <br>
-                <br>
-                </div>
             </div>
         </div>
 
-        <!--<p class="col-lg-7" id="sep_tag" style="color: red;">-->
-            <!--alksjdaskdj-->
-        <!--</p>-->
-    </div>
+    </article>
 
-    <script src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/movie_info.js"></script>
+
+    <!--<article style="color:red">-->
+        <!--asdasd-->
+    <!--</article>-->
+<!--<br>-->
+<!--<br>-->
+<!--<div>-->
+
+<!--</div>-->
+
+
+    <!--</div>-->
+
+<!--</div>-->
+
+<!--<p class="col-lg-7" id="sep_tag" style="color: red;">-->
+<!--alksjdaskdj-->
+<!--</p>-->
+<!--</div>-->
+
+<script src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.js"></script>
+<script type="text/javascript" src="../js/movie_info.js"></script>
 </body>
 </html>

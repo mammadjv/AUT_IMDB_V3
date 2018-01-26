@@ -17,12 +17,12 @@
 
 
 body div{
-    position: fixed; left: 0% ; right: 0%;
+    /*position: fixed; left: 0% ; right: 0%;*/
     overflow-y: scroll;
     /*overflow-x: scroll;*/
-    resize: both;
-    height: 100%;
-    background-color: white;
+    /*resize: both;*/
+    /*height: 100%;*/
+    background-color: transparent;
 }
 
 .options button{
@@ -31,13 +31,32 @@ body div{
     font-size: medium;
 }
 
+#all_comments div{
+    overflow-y: hidden;
+}
+
+#all_comments{
+    /*display: inline;*/
+    overflow-y: hidden;
+    margin-left: 10%;
+    width: 80%;
+    height: 50%;
+    position:relative;
+    /*bottom: 100px;*/
+    /*background-color: red;*/
+    /*width: 100%;*/
+    margin-bottom: 100px;
+
+}
+
 .options .all_upper_tab{
-    right: 10%;
+    margin-right: 10%;
     width: 80%;
 }
 
 input[type="range"]{
     direction: ltr;
+    /*width: 100px;*/
 }
 
 
@@ -93,6 +112,7 @@ input[type="checkbox"]:checked{
     width:100%;
     direction: rtl;
     color:black;
+    padding-left: 10px;
 }
 
 .text_comment{
@@ -105,6 +125,10 @@ input[type="checkbox"]:checked{
 
 .rating{
     color: blue;
+    direction: rtl;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    margin-bottom: 10px;
 }
 
 .profile_pic input{
@@ -126,6 +150,10 @@ input[type="checkbox"]:checked{
     height: 110px;
     /*background-color: red;*/
     color: blue;
+}
+
+.rating div{
+    bottom: 5px;
 }
 
 .comment_rates_right{
@@ -161,9 +189,10 @@ input[type="checkbox"]:checked{
 
 .comment_tab{
     color: black;
+    /*overflow-y: auto;*/
     text-align: center;
-    right: 10%;
-    width: 80%;
+    /*right: 10%;*/
+    width: 100%;
 
 }
 
@@ -187,11 +216,18 @@ div::-webkit-scrollbar{
 
 #left_pannel{
     position:relative;
-    margin-right:26%;
-    margin-top:0%;
-    height: 99%;
-    color: whitesmoke;
-    background: none;
+
+    /*right:0%;*/
+    /*padding-right: 20px;*/
+    /*right:1%;*/
+    float:left;
+
+    /*right:0%;*/
+/*margin-left: 2%;*/
+    /*margin-top:0%;*/
+    /*height: 99%;*/
+    /*color: whitesmoke;*/
+    /*background: red;*/
 }
 
 #left_pannel div,hr{
@@ -212,7 +248,7 @@ div::-webkit-scrollbar{
     background-color: white;
     text-decoration: dashed;
     padding: 14px 0px;
-    /*width: 10%;*/
+    width: 130px;
 }
 
 .upper_tab:hover {
@@ -224,12 +260,13 @@ div::-webkit-scrollbar{
 
 
 #film_icon{
-    position:absolute;
-    top: 0%;
-    right: 5%;
-    width: 20%;
-    height: 70%;
-    background-color: red;
+    /*position:absolute;*/
+    /*top: 0%;*/
+    right: 4%;
+    width: 250px;
+    height: 270px;
+    /*height: 70%;*/
+    /*background-color: red;*/
 }
 
 
@@ -274,18 +311,18 @@ div::-webkit-scrollbar{
     position: relative;
     /*left: 10%;*/
     width: 100%;
-    top: 10%;
-    height: 80%;
+    margin-top: 5%;
+    /*height: 50%;*/
     background-color: darkorange;
 }
 
 .movie_info img{
-    /*position: relative;*/
+    position: relative;
     float: right;
-    margin-right: 100px;
+    /*margin-right: 10px;*/
     margin-top: 30px;
     /*margin-bottom: 100px;*/
-    width: 250px;
+    width: 230px;
     height: 60%;
     /*height: auto;*/
 }
@@ -324,10 +361,22 @@ div::-webkit-scrollbar{
     background-repeat:   no-repeat;
 }
 
+.options{
+    position :relative;
+    /*float:right;*/
+    /*direction: rtl;*/
+    /*right:10px;*/
+    height: auto;
+}
+
 #background{
     position: absolute;
+
     width: 100%;
+    left:0%;
+
     height: 95%;
+    /*height: auto;*/
     top: 4%;
 }
 
@@ -401,6 +450,8 @@ div::-webkit-scrollbar{
     -o-user-select: none;
     user-select: none;
     font-size: small;
+    width: 60px;
+    /*padding-left: 5px;*/
 }
 .range input[type="range"] {
     outline: none;
@@ -443,7 +494,7 @@ div::-webkit-scrollbar{
     background-color: rgb(240, 173, 78);
 }
 /*.range.range-warning input[type="range"]::-moz-slider-thumb {*/
-    /*background-color: rgb(240, 173, 78);*/
+/*background-color: rgb(240, 173, 78);*/
 /*}*/
 .range.range-warning output {
     background-color: rgb(240, 173, 78);
@@ -456,7 +507,7 @@ div::-webkit-scrollbar{
     background-color: rgb(217, 83, 79);
 }
 /*.range.range-danger input[type="range"]::-moz-slider-thumb {*/
-    /*background-color: rgb(217, 83, 79);*/
+/*background-color: rgb(217, 83, 79);*/
 /*}*/
 .range.range-danger output {
     background-color: rgb(217, 83, 79);
@@ -471,7 +522,6 @@ div::-webkit-scrollbar{
 #ex1Slider .slider-selection {
     background: #BABABA;
 }
-
 
 
 
