@@ -363,7 +363,7 @@ div::-webkit-scrollbar{
 
 video{
     z-index: 100;
-
+    height: 300px;
 }
 
 

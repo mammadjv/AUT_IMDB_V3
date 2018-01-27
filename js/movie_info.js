@@ -155,7 +155,9 @@ function set_elements_attributes(json){
     document.getElementById('time').innerHTML = json['Runtime'];
     document.getElementById('rate').innerHTML = json['Rated'];
 
-    document.getElementById('trailer').setAttribute("src",json['Trailer']);
+    //if(json['Trailer'] != "nothing"){
+        document.getElementById('trailer').setAttribute("src",json['Trailer']);
+    //}
 
     var directors = json['Director'].split(',');
     var director_tag = document.getElementById('director');

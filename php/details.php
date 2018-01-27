@@ -15,7 +15,13 @@
         $output = array();
         $output = $result->fetch_assoc();
         $output["Poster"] = "/page/poster/".$id.".jpg";
+//        if(is_readable("/page/trailer/".$id.".mp4")){
         $output["Trailer"] = "/page/trailer/".$id.".mp4";
+//        }
+//        else{
+            $output["Trailer"] = "nothing";
+//        }
+
         echo json_encode($output);
     }
 //    while ($row = $result->fetch_assoc()) {
