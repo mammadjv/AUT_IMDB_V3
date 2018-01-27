@@ -19,7 +19,7 @@
         $output["Trailer"] = "/page/trailer/".$id.".mp4";
 //        }
 //        else{
-            $output["Trailer"] = "nothing";
+//            $output["Trailer"] = "nothing";
 //        }
 
         echo json_encode($output);
