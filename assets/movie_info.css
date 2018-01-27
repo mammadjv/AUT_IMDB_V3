@@ -361,6 +361,12 @@ div::-webkit-scrollbar{
     background-repeat:   no-repeat;
 }
 
+video{
+    z-index: 100;
+
+}
+
+
 .options{
     position :relative;
     /*float:right;*/

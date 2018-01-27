@@ -15,6 +15,7 @@
         $output = array();
         $output = $result->fetch_assoc();
         $output["Poster"] = "/page/poster/".$id.".jpg";
+        $output["Trailer"] = "/page/trailer/".$id.".mp4";
         echo json_encode($output);
     }
 //    while ($row = $result->fetch_assoc()) {

@@ -155,7 +155,7 @@ function set_elements_attributes(json){
     document.getElementById('time').innerHTML = json['Runtime'];
     document.getElementById('rate').innerHTML = json['Rated'];
 
-
+    document.getElementById('trailer').setAttribute("src",json['Trailer']);
 
     var directors = json['Director'].split(',');
     var director_tag = document.getElementById('director');
@@ -391,7 +391,7 @@ jQuery(document).ready(function($){
 
     var url = "../php/details.php?id="+movie_id;
     $.get(url).done(function (json){
-        //console.log(json);
+        console.log(json);
         set_elements_attributes(json);
     });
 
