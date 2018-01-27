@@ -1,7 +1,9 @@
 <?php
     $image = $_FILES["Poster"]["name"];
+    $trailer = $_FILES["Trailer"]["name"];
+
     echo $image;
-    if($_FILES["Poster"]["error"] > 0){
+    if($_FILES["Poster"]["error"] > 0 || $_FILES["Trailer"]["error"] > 0){
         echo "Error: " . $_FILES["Poster"]["error"] . "<br />";
     }
     else{
@@ -29,6 +31,9 @@
         $query = "select count(*) as total from movies;";
         $result = $sqlconnection->query($query);
         $data= $result->fetch_assoc();
+
+
+
 //        echo $data["total"];
 
 //        $query = "insert into movies(Title, created_at, Rated, Year, Runtime, Country, Language, Plot, Director, Writer,Actors ,imdbVotes, Genre)
@@ -47,7 +52,10 @@
 //        echo $data["total"];
 
         if(move_uploaded_file($_FILES["Poster"]["tmp_name"],"../poster/".($data["total"]).".jpg")){
-            echo "Stored in: " . "../poster/".($data["total"]).".jpg";
+            echo "Poster Stored in: " . "../poster/".($data["total"]).".jpg";
+        }
+        if(move_uploaded_file($_FILES["Trailer"]["tmp_name"],"../trailer/".($data["total"]).".mp4")){
+            echo "Video Stored in: " . "../trailer/".($data["total"]).".mp4";
         }
     }
 ?>
